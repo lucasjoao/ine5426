@@ -21,6 +21,7 @@ import org.apache.commons.cli.ParseException;
 
 import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
 import br.ufsc.ine5426.compiladorxpp.lexicalanalyser.LexicalAnalyser;
+import br.ufsc.ine5426.compiladorxpp.lexicalanalyser.Token;
 
 public class Main {
 
@@ -34,7 +35,7 @@ public class Main {
 				doCompile(cmd);
 			} else {
 				HelpFormatter formatter = new HelpFormatter();
-				formatter.printHelp("java -jar trabalho3.jar", options);
+				formatter.printHelp("java -jar trabalho1.jar", options);
 			}
 		} catch (ParseException e) {
 			// no time bro
@@ -48,6 +49,12 @@ public class Main {
 		var input = cmd.getOptionValue("i");
 		try {
 			var la = new LexicalAnalyser(FiniteAutomata.Load("./baseAutomata.txt"));
+			la.compile(input);
+			for (Token token : la.getTokens()) {
+				System.out.println(token.getType() + " " + token.getName());
+			}
+
+
 			//			if (ll1.compile(input)){
 			//				System.out.println("Compilação bem-sucedida!");
 			//			}else{

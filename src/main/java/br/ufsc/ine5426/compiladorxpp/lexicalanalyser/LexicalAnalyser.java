@@ -9,14 +9,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import lombok.Getter;
+
 import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
 
 public class LexicalAnalyser {
 
 	private FiniteAutomata baseAutomata;
 	private Set<String> reservedWords = new HashSet<>(Arrays.asList("float","int","bool","byte","while", "do", "break", "if", "then", "else", "true", "false"));
+	@Getter
 	private List<Token> tokens = new ArrayList<>();
-	private int iterator;
 	private List<String> errors = new ArrayList<>();
 
 	public LexicalAnalyser(FiniteAutomata baseAutomata) {
@@ -26,7 +28,6 @@ public class LexicalAnalyser {
 	public boolean compile(String path) {
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(path), Charset.defaultCharset());
-			this.iterator = 0;
 			int lineNumber = 1;
 			for (String line : lines) {
 				List<String> stringTokens = this.tokenizeString(line);
@@ -35,7 +36,7 @@ public class LexicalAnalyser {
 					if (this.baseAutomata.acceptWord(lexeme)){
 						this.tokens.add(this.st(this.baseAutomata.getCurrentState().getLabel(), lexeme, lineNumber, wordNumber));
 					}else{
-						this.getErrors().add(String.format("Erro léxico na linha (%s), palavra (%s): lexema com problema: %s", lineNumber, wordNumber, lexeme));
+						this.errors.add(String.format("Erro léxico na linha (%s), palavra (%s): lexema com problema: %s", lineNumber, wordNumber, lexeme));
 					}
 					wordNumber++;
 				}
@@ -48,11 +49,11 @@ public class LexicalAnalyser {
 		return this.errors.size() == 0;
 	}
 
-	public List<String> tokenizeString(String text) {
+	private List<String> tokenizeString(String text) {
 		return Arrays.asList(text.split(" "));
 	}
 
-	public Token st(String stateName, String lexeme, int line , int word) {
+	private Token st(String stateName, String lexeme, int line , int word) {
 		int stateId = Integer.parseInt(stateName.replace("q", ""));
 		switch (stateId) {
 		case 1:
@@ -87,18 +88,6 @@ public class LexicalAnalyser {
 			return new Token(this.reservedWords.contains(lexeme) ? TokenType.PR : TokenType.ID, lexeme, line, word);
 		}
 		return null;
-	}
-
-	public Token getNextToken() {
-		return this.tokens.get(this.iterator++);
-	}
-
-	public boolean hasToken() {
-		return this.iterator < this.tokens.size();
-	}
-
-	public List<String> getErrors() {
-		return this.errors;
 	}
 }
 
