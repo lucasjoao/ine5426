@@ -1,0 +1,26 @@
+<program>	<block>					
+<block>	{ <decls> <stmts> }					
+<decls>	&	<decl> <decls>				
+<decl>	<type> id ;					
+<type>	<basic> <types>					
+<types>	&	[ num ] <types>				
+<stmts>	&	<stmt> <stmts>				
+<stmt>	<block>	<loc> = <bool> ;	<openif>	break ;	do <stmt> while ( <bool> ) ;	while ( <bool> ) <stmt>
+<openif>	if ( <bool> ) then <stmt> else <stmt>					
+<loc>	id <locs>					
+<locs>	&	[ <bool> ] <locs>				
+<bool>	<join> <boolx>					
+<boolx>	&	|| <bool>				
+<join>	<equality> <joinx>					
+<joinx>	&	&& <join>				
+<equality>	<rel> <equalityx>					
+<equalityx>	&	!= <equality>	== <equality>			
+<rel>	<expr> <relx>					
+<relx>	< <expr>	<= <expr>	>= <expr>	> <expr>	&	
+<expr>	<term> <exprs>					
+<exprs>	+ <term> <exprs>	- <term> <exprs>	&			
+<term>	<unary> <terms>					
+<terms>	* <unary> <terms>	/ <unary> <terms>	&			
+<unary>	! <unary>	- <unary>	<factor>			
+<factor>	( <bool> )	<loc>	num	real	true	false
+<basic>	int	float	char	
