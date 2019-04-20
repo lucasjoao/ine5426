@@ -13,7 +13,7 @@ import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
 
 public class LexicalAnalyser {
 
-	private br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata baseAutomata;
+	private FiniteAutomata baseAutomata;
 	private Set<String> reservedWords = new HashSet<>(Arrays.asList("float","int","bool","byte","while", "do", "break", "if", "then", "else", "true", "false"));
 	private List<Token> tokens = new ArrayList<>();
 	private int iterator;
@@ -23,14 +23,9 @@ public class LexicalAnalyser {
 		this.baseAutomata = baseAutomata;
 	}
 
-	private LexicalAnalyser() {
-
-	}
-
 	public boolean compile(String path) {
 		try {
-			List<String> lines = Files.readAllLines(Paths.get(path),
-					Charset.defaultCharset());
+			List<String> lines = Files.readAllLines(Paths.get(path), Charset.defaultCharset());
 			this.iterator = 0;
 			int lineNumber = 1;
 			for (String line : lines) {

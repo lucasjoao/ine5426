@@ -37,6 +37,7 @@ public class Main {
 				formatter.printHelp("java -jar trabalho3.jar", options);
 			}
 		} catch (ParseException e) {
+			// no time bro
 			e.printStackTrace();
 		}
 	}
@@ -54,6 +55,7 @@ public class Main {
 			//				ll1.getErrors().forEach(msg->System.out.println(msg));
 			//			}
 		} catch (IOException e) {
+			// no time bro
 			e.printStackTrace();
 		}
 
