@@ -10,27 +10,25 @@
 
 package br.ufsc.ine5426.compiladorxpp.automata;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class State implements Comparable<State> {
 
 	private int id;
 	private String label;
 
+	// TODO: documentar que eh esses valores por causa do automato
+	public static final String RETRACT_STATE = "q27";
+	public static final String ERROR_STATE = "q28";
+
 	@Override
 	public int compareTo(State state) {
 		return this.getId() - state.getId();
-	}
-
-	public int getId() {
-		return this.id;
-	}
-
-	public String getLabel() {
-		return this.label;
-	}
-
-	public State(int id, String label) {
-		this.setId(id);
-		this.setLabel(label);
 	}
 
 	@Override
@@ -48,14 +46,6 @@ public class State implements Comparable<State> {
 	@Override
 	public int hashCode() {
 		return this.getId() ^ (this.getId() >>> 32);
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
 	}
 
 	public State copy() {

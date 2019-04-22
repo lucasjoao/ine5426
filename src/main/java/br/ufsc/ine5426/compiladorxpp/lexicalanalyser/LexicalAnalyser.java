@@ -12,11 +12,12 @@ import java.util.Set;
 import lombok.Getter;
 
 import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
+import br.ufsc.ine5426.compiladorxpp.automata.State;
 
 public class LexicalAnalyser {
 
 	private FiniteAutomata baseAutomata;
-	private Set<String> reservedWords = new HashSet<>(Arrays.asList("float","int","bool","byte","while", "do", "break", "if", "then", "else", "true", "false"));
+	private Set<String> reservedWords = new HashSet<>(Arrays.asList("class", "extends", "int", "string", "constructor", "break", "print", "read", "return", "super", "if", "else", "for", "new", "null"));
 	@Getter
 	private List<Token> tokens = new ArrayList<>();
 	private List<String> errors = new ArrayList<>();
@@ -30,30 +31,46 @@ public class LexicalAnalyser {
 			List<String> lines = Files.readAllLines(Paths.get(path), Charset.defaultCharset());
 			int lineNumber = 1;
 			for (String line : lines) {
-				List<String> stringTokens = this.tokenizeString(line);
-				int wordNumber = 1;
-				for (String lexeme : stringTokens) {
-					if (this.baseAutomata.acceptWord(lexeme)){
-						this.tokens.add(this.st(this.baseAutomata.getCurrentState().getLabel(), lexeme, lineNumber, wordNumber));
-					}else{
-						this.errors.add(String.format("Erro léxico na linha (%s), palavra (%s): lexema com problema: %s", lineNumber, wordNumber, lexeme));
+				this.baseAutomata.resetAutomata();
+				int startOfLexeme = 0;
+				for (int endOfLexeme = 0; endOfLexeme < line.length(); endOfLexeme++) {
+					State state = this.baseAutomata.transitByChar(line.charAt(endOfLexeme));
+
+					// TODO: melhorar mensagens de erros
+					if (State.ERROR_STATE.equals(state.getLabel())) {
+						this.errors.add("melhorar isso daqui");
+						startOfLexeme = endOfLexeme;
+						this.baseAutomata.resetAutomata();
+					} else if (State.RETRACT_STATE.equals(state.getLabel())) {
+						String lexeme = line.substring(startOfLexeme, endOfLexeme);
+						startOfLexeme = endOfLexeme;
+						this.baseAutomata.resetAutomata();
+						this.tokens.add(this.st(this.baseAutomata.getOldState().getLabel(), lexeme, lineNumber, 0));
+					} else if (endOfLexeme == line.length() - 1) {
+						// ultimo char da linha
+						if (this.baseAutomata.isFinalState(state)) {
+							String lexeme = line.substring(startOfLexeme, endOfLexeme);
+							this.tokens.add(this.st(state.getLabel(), lexeme, lineNumber, 0));
+						} else {
+							this.errors.add("melhorar isso daqui");
+						}
 					}
-					wordNumber++;
+
 				}
+
 				lineNumber++;
 			}
 
 		} catch (Exception e) {
+			// TODO: melhorar isso
 			return false;
 		}
 		return this.errors.size() == 0;
 	}
 
-	private List<String> tokenizeString(String text) {
-		return Arrays.asList(text.split(" "));
-	}
-
+	// TODO: melhorar nome do metodo
 	private Token st(String stateName, String lexeme, int line , int word) {
+		lexeme = lexeme.trim();
 		int stateId = Integer.parseInt(stateName.replace("q", ""));
 		switch (stateId) {
 		case 1:
@@ -62,30 +79,32 @@ public class LexicalAnalyser {
 		case 4:
 		case 5:
 		case 6:
-		case 7:
 		case 8:
+			return new Token(TokenType.RELOP, lexeme, line, word);
+		case 9:
+		case 11:
+		case 21:
+			return new Token(TokenType.BLOCK_OPEN, lexeme, line, word);
 		case 10:
 		case 12:
-			return new Token(TokenType.RELOP, lexeme, line, word);
-		case 13:
-		case 15:
 		case 22:
-			return new Token(TokenType.BLOCK_OPEN, lexeme, line, word);
-		case 14:
-		case 16:
-		case 23:
 			return new Token(TokenType.BLOCK_CLOSE, lexeme, line, word);
-		case 17:
-			return new Token(TokenType.DELIMITER, lexeme, line, word);
-		case 18:
+		case 13:
+		case 14:
 		case 19:
+			return new Token(TokenType.DELIMITER, lexeme, line, word);
+		case 15:
+		case 16:
+		case 17:
+		case 18:
 		case 20:
-		case 21:
 			return new Token(TokenType.AROP, lexeme, line, word);
 		case 24:
 			return new Token(TokenType.NUMBER, lexeme, line, word);
 		case 25:
 			return new Token(this.reservedWords.contains(lexeme) ? TokenType.PR : TokenType.ID, lexeme, line, word);
+		case 26:
+			return new Token(TokenType.STRING, lexeme, line, word);
 		}
 		return null;
 	}

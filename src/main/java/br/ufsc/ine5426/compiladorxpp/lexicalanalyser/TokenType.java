@@ -8,5 +8,6 @@ public enum TokenType {
 	AROP,
 	BLOCK_OPEN,
 	BLOCK_CLOSE,
-	NUMBER
+	NUMBER,
+	STRING;
 }

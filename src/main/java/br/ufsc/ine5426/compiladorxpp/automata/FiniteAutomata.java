@@ -27,6 +27,8 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import lombok.Getter;
+
 import br.ufsc.ine5426.compiladorxpp.common.Symbol;
 import br.ufsc.ine5426.compiladorxpp.grammar.ProductionRule;
 import br.ufsc.ine5426.compiladorxpp.grammar.RegularGrammar;
@@ -38,6 +40,8 @@ public class FiniteAutomata {
 	private Set<State> finalStates;
 	private Map<State, Map<Symbol, Set<State>>> transitionTable;
 	private State currentState;
+	@Getter
+	private State oldState;
 
 	public FiniteAutomata(State initialState, Set<State> finalStates, Map<State, Map<Symbol, Set<State>>> transitionTable) {
 		this.initialState = initialState;
@@ -583,9 +587,21 @@ public class FiniteAutomata {
 
 	}
 
+	public void resetAutomata() {
+		this.currentState = this.initialState;
+	}
+
+	public State transitByChar(Character ch) {
+		this.oldState = this.currentState;
+		var transition = this.transitionTable.get(this.currentState);
+		var symbol = new Symbol(ch);
+		this.currentState = transition.get(symbol).iterator().next();
+		return this.currentState;
+	}
+
 	public boolean acceptWord(String str) {
 		if (!this.isDeterministic()) {
-
+			System.out.println("Autômato não determinístico.");
 		}
 		this.currentState = this.initialState;
 		try {
@@ -618,7 +634,7 @@ public class FiniteAutomata {
 
 	}
 
-	private boolean isFinalState(State state) {
+	public boolean isFinalState(State state) {
 		return this.finalStates.contains(state);
 	}
 
