@@ -23,6 +23,9 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Symbol {
 
+	/**
+	 * String que representa o símbolo de entrada.
+	 */
 	private String content;
 
 	/**
