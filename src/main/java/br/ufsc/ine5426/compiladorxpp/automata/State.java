@@ -10,6 +10,7 @@
 
 package br.ufsc.ine5426.compiladorxpp.automata;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -44,6 +45,12 @@ public class State implements Comparable<State> {
 	 *
 	 */
 	public static final String ERROR_STATE = "q28";
+	/**
+	 * Valor retirado do autômato desenvolvido pela equipe. Representa o estado
+	 * especial de erro para determinados caracteres.
+	 *
+	 */
+	public static final String ERROR_STATE_CH_SPECIAL = "q29";
 
 	/**
 	 * Necessário por causa das estruturas de dados que o State compõe.
@@ -77,5 +84,15 @@ public class State implements Comparable<State> {
 	@Override
 	public int hashCode() {
 		return this.getId() ^ (this.getId() >>> 32);
+	}
+
+	/**
+	 * Verifica se o estado é de erro, ou seja, se ele é igual {@link State#ERROR_STATE} ou {@link State#ERROR_STATE_CH_SPECIAL}.
+	 *
+	 * @param label que representa o estado que será verificado
+	 * @return true se o estado representado pela label é de erro
+	 */
+	public static boolean isErrorState(String label) {
+		return State.ERROR_STATE.equals(label) || State.ERROR_STATE_CH_SPECIAL.equals(label);
 	}
 }

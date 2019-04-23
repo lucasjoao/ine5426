@@ -92,12 +92,14 @@ public class LexicalAnalyser {
 					char ch = line.charAt(endOfLexeme);
 					State state = this.baseAutomata.transitByChar(ch);
 
-					if (State.ERROR_STATE.equals(state.getLabel())) {
+					if (State.isErrorState(state.getLabel())) {
 						this.errors.add(String.format(
 								"Erro encontrado na linha de número %s, coluna %s que possui o seguinte texto: %s",
 								lineNumber, startOfLexeme, line));
 						startOfLexeme = endOfLexeme;
-						endOfLexeme -= 1;
+						if (State.ERROR_STATE.equals(state.getLabel())) {
+							endOfLexeme -= 1;
+						}
 						this.baseAutomata.resetAutomata();
 					} else if (State.RETRACT_STATE.equals(state.getLabel())) {
 						String lexeme = line.substring(startOfLexeme, endOfLexeme);

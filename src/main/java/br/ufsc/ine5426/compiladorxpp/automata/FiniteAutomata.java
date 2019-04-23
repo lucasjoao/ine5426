@@ -218,10 +218,15 @@ public class FiniteAutomata {
 	 *         ch
 	 */
 	public State transitByChar(Character ch) {
-		this.oldState = this.currentState;
-		var transition = this.transitionTable.get(this.currentState);
-		var symbol = Character.isWhitespace(ch) ? new Symbol("<space>") : new Symbol(ch);
-		this.currentState = transition.get(symbol).iterator().next();
+		try {
+			this.oldState = this.currentState;
+			var transition = this.transitionTable.get(this.currentState);
+			var symbol = Character.isWhitespace(ch) ? new Symbol("<space>") : new Symbol(ch);
+			this.currentState = transition.get(symbol).iterator().next();
+		} catch (Exception e) {
+			System.out.println("Erro ao compilar o caractere: " + ch);
+			System.exit(0);
+		}
 		return this.currentState;
 	}
 }
