@@ -8,36 +8,37 @@
  *
  */
 
-package br.ufsc.ine5426.compiladorxpp.common;
+package br.ufsc.ine5426.compiladorxpp.automata;
 
 import java.text.Normalizer;
 
-// TODO: tudo pronto, refatorar aqui
+import lombok.AllArgsConstructor;
+import lombok.ToString;
+
+/**
+ * Classe que representa os símbolos de entrada do {@link FiniteAutomata}.
+ *
+ */
+@ToString
+@AllArgsConstructor
 public class Symbol {
+
 	private String content;
 
-	public static final Symbol EPSILON = new Symbol('$');
-	public static final Symbol CFG_EPSILON = new Symbol('&');
-	public static final Symbol CFG_EMPTY_STACK = new Symbol('$');
-	public static final Symbol ESCAPE = new Symbol('\'');
-
+	/**
+	 * É feito um tratamento sobre a entrada para deixá-la em caixa baixa e sem acentos. Dessa forma,
+	 * considera-se que se for feito a leitura no programa fonte do símbolo 'Á', o mesmo será tratado como
+	 * símbolo 'a'.
+	 *
+	 * @param symbol char que será o símbolo de entrada em string
+	 */
 	public Symbol(Character symbol) {
 		this.content = Normalizer.normalize(Character.toString(Character.toLowerCase(symbol)), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
 	}
 
-	public Symbol(String symbol) {
-		this.content = symbol;
-	}
-
-	@Override
-	public String toString() {
-		return this.content;
-	}
-
-	public boolean isVariable(){
-		return this.content != null && this.content.startsWith("<") && this.content.endsWith(">");
-	}
-
+	/**
+	 * Dois Symbol são iguais se os seus conteúdos são idênticos.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 
@@ -52,6 +53,12 @@ public class Symbol {
 		return false;
 	}
 
+	/**
+	 * hashCode é reimplementado por causa que o Symbol é utilizado em estruturas de dados que utilizam
+	 * desse valor.
+	 *
+	 * @see FiniteAutomata#Load(String)
+	 */
 	@Override
 	public int hashCode() {
 		return 31 + this.content.hashCode();

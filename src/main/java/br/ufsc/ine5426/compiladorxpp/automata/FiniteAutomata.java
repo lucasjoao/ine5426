@@ -26,8 +26,6 @@ import java.util.TreeSet;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import br.ufsc.ine5426.compiladorxpp.common.Symbol;
-
 @NoArgsConstructor
 public class FiniteAutomata {
 
@@ -238,51 +236,11 @@ public class FiniteAutomata {
 		return this.finalStates.contains(state);
 	}
 
-	// TODO: add verificacao de que eh deterministico?
 	public State transitByChar(Character ch) {
 		this.oldState = this.currentState;
 		var transition = this.transitionTable.get(this.currentState);
 		var symbol = Character.isWhitespace(ch) ? new Symbol("<space>") : new Symbol(ch);
 		this.currentState = transition.get(symbol).iterator().next();
 		return this.currentState;
-	}
-
-	// TODO: deixar esse metodo?
-	public boolean acceptWord(String str) {
-		if (!this.isDeterministic()) {
-			System.out.println("Autômato não determinístico.");
-		}
-		this.currentState = this.initialState;
-		try {
-			for (int i = 0; i < str.length(); i++) {
-				var transition = this.transitionTable.get(this.currentState);
-				var symbol = new Symbol(str.charAt(i));
-				this.currentState = transition.get(symbol).iterator().next();
-			}
-		} catch (Exception ex) {
-			return false;
-		}
-		return this.isFinalState(this.currentState);
-	}
-
-	private boolean isDeterministic() {
-		for (var entry : this.transitionTable.entrySet()) {
-			var transition = entry.getValue();
-			if (transition == null || transition.isEmpty()) {
-				continue;
-			}
-
-			if (transition.containsKey(Symbol.EPSILON)) {
-				return false;
-			}
-
-			for (var nextStates : transition.values()) {
-				if (nextStates.size() > 1) {
-					return false;
-				}
-			}
-		}
-
-		return true;
 	}
 }
