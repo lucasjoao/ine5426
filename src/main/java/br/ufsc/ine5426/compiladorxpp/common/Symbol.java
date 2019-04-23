@@ -10,6 +10,7 @@
 
 package br.ufsc.ine5426.compiladorxpp.common;
 
+// TODO: tudo pronto, refatorar aqui
 public class Symbol {
 	private String content;
 

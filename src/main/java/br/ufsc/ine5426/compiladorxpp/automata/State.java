@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+//TODO: tudo pronto, refatorar aqui
 @Getter
 @Setter
 @AllArgsConstructor
