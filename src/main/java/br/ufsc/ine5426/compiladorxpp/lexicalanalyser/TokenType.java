@@ -9,5 +9,6 @@ public enum TokenType {
 	BLOCK_OPEN,
 	BLOCK_CLOSE,
 	NUMBER,
-	STRING;
+	STRING,
+	POINT;
 }

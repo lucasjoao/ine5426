@@ -97,8 +97,9 @@ public class LexicalAnalyser {
 			return new Token(TokenType.BLOCK_CLOSE, lexeme, line, word);
 		case 13:
 		case 14:
-		case 19:
 			return new Token(TokenType.DELIMITER, lexeme, line, word);
+		case 19:
+			return new Token(TokenType.POINT, lexeme, line, word);
 		case 15:
 		case 16:
 		case 17:
