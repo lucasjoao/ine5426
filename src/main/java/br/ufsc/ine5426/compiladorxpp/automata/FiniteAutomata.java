@@ -68,7 +68,7 @@ public class FiniteAutomata {
 		for (var part : parts) {
 			var trimPart = part.trim();
 			if (!trimPart.isEmpty()) {
-				symbols.add(new Symbol(trimPart.charAt(0)));
+				symbols.add(new Symbol(trimPart));
 			}
 		}
 	}
@@ -242,7 +242,7 @@ public class FiniteAutomata {
 	public State transitByChar(Character ch) {
 		this.oldState = this.currentState;
 		var transition = this.transitionTable.get(this.currentState);
-		var symbol = new Symbol(ch);
+		var symbol = Character.isWhitespace(ch) ? new Symbol("<space>") : new Symbol(ch);
 		this.currentState = transition.get(symbol).iterator().next();
 		return this.currentState;
 	}

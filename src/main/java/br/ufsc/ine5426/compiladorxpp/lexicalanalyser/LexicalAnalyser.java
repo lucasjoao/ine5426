@@ -20,6 +20,7 @@ public class LexicalAnalyser {
 	private Set<String> reservedWords = new HashSet<>(Arrays.asList("class", "extends", "int", "string", "constructor", "break", "print", "read", "return", "super", "if", "else", "for", "new", "null"));
 	@Getter
 	private List<Token> tokens = new ArrayList<>();
+	@Getter
 	private List<String> errors = new ArrayList<>();
 
 	public LexicalAnalyser(FiniteAutomata baseAutomata) {
@@ -34,22 +35,25 @@ public class LexicalAnalyser {
 				this.baseAutomata.resetAutomata();
 				int startOfLexeme = 0;
 				for (int endOfLexeme = 0; endOfLexeme < line.length(); endOfLexeme++) {
-					State state = this.baseAutomata.transitByChar(line.charAt(endOfLexeme));
+					char ch = line.charAt(endOfLexeme);
+					State state = this.baseAutomata.transitByChar(ch);
 
 					// TODO: melhorar mensagens de erros
 					if (State.ERROR_STATE.equals(state.getLabel())) {
 						this.errors.add("melhorar isso daqui");
 						startOfLexeme = endOfLexeme;
+						endOfLexeme -= 1;
 						this.baseAutomata.resetAutomata();
 					} else if (State.RETRACT_STATE.equals(state.getLabel())) {
 						String lexeme = line.substring(startOfLexeme, endOfLexeme);
 						startOfLexeme = endOfLexeme;
+						endOfLexeme -= 1;
 						this.baseAutomata.resetAutomata();
 						this.tokens.add(this.st(this.baseAutomata.getOldState().getLabel(), lexeme, lineNumber, 0));
 					} else if (endOfLexeme == line.length() - 1) {
 						// ultimo char da linha
 						if (this.baseAutomata.isFinalState(state)) {
-							String lexeme = line.substring(startOfLexeme, endOfLexeme);
+							String lexeme = line.substring(startOfLexeme, endOfLexeme+1);
 							this.tokens.add(this.st(state.getLabel(), lexeme, lineNumber, 0));
 						} else {
 							this.errors.add("melhorar isso daqui");
@@ -63,6 +67,8 @@ public class LexicalAnalyser {
 
 		} catch (Exception e) {
 			// TODO: melhorar isso
+			e.printStackTrace();
+
 			return false;
 		}
 		return this.errors.size() == 0;

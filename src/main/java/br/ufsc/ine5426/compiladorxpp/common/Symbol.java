@@ -10,6 +10,8 @@
 
 package br.ufsc.ine5426.compiladorxpp.common;
 
+import java.text.Normalizer;
+
 // TODO: tudo pronto, refatorar aqui
 public class Symbol {
 	private String content;
@@ -20,7 +22,7 @@ public class Symbol {
 	public static final Symbol ESCAPE = new Symbol('\'');
 
 	public Symbol(Character symbol) {
-		this.content = ""+symbol;
+		this.content = Normalizer.normalize(Character.toString(Character.toLowerCase(symbol)), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
 	}
 
 	public Symbol(String symbol) {
