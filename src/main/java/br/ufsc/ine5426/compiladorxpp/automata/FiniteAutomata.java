@@ -30,7 +30,6 @@ import lombok.NoArgsConstructor;
 public class FiniteAutomata {
 
 	private State initialState;
-	private State errorState;
 	private Set<State> finalStates;
 	private Map<State, Map<Symbol, Set<State>>> transitionTable;
 	@Getter
@@ -149,83 +148,6 @@ public class FiniteAutomata {
 		}
 
 		return nextStates;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		var symbols = this.getAlphabet();
-		this.fillHeader(sb, symbols);
-		this.fillBody(sb, symbols);
-		return sb.toString();
-	}
-
-	private Set<Symbol> getAlphabet() {
-		var symbols = new LinkedHashSet<Symbol>();
-		for (var entry : this.transitionTable.entrySet()) {
-			var transition = entry.getValue();
-			if (transition == null || transition.isEmpty()) {
-				continue;
-			}
-			symbols.addAll(transition.keySet());
-		}
-
-		return symbols;
-	}
-
-	private void fillHeader(StringBuilder sb, Set<Symbol> symbols) {
-		for (var symbol : symbols) {
-			sb.append("\t" + symbol);
-		}
-		sb.append("\n");
-	}
-
-	private void fillBody(StringBuilder sb, Set<Symbol> symbols) {
-		var states = this.transitionTable.keySet();
-		for (var state : states) {
-			if (this.isInitialState(state)) {
-				sb.append(">");
-			}
-			if (this.isFinalState(state)) {
-				sb.append("*");
-			}
-			sb.append(state.getLabel());
-
-			var transitions = this.transitionTable.get(state);
-			for (var symbol : symbols) {
-				sb.append("\t");
-				if (transitions.containsKey(symbol)) {
-					sb.append(this.getNextStateSetString(transitions.get(symbol)));
-				} else {
-					sb.append("-");
-				}
-			}
-			sb.append("\n");
-
-		}
-	}
-
-	private boolean isInitialState(State state) {
-		return this.initialState.equals(state);
-	}
-
-
-	private String getNextStateSetString(Set<State> states) {
-		if (states == null || states.isEmpty()) {
-			return "-";
-		} else if (states.size() == 1) {
-			return states.iterator().next().getLabel();
-		}
-
-		StringBuilder sb = new StringBuilder();
-		sb.append("{");
-		for (var state : states) {
-			sb.append(state.getLabel() + ",");
-		}
-		var lastPos = sb.lastIndexOf(",");
-		sb.replace(lastPos, lastPos + 1, "}");
-		return sb.toString();
-
 	}
 
 	public void resetAutomata() {

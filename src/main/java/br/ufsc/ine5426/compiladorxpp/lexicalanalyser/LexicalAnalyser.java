@@ -9,15 +9,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import lombok.Getter;
-
 import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
 import br.ufsc.ine5426.compiladorxpp.automata.State;
+import lombok.Getter;
 
 public class LexicalAnalyser {
 
 	private FiniteAutomata baseAutomata;
-	private Set<String> reservedWords = new HashSet<>(Arrays.asList("class", "extends", "int", "string", "constructor", "break", "print", "read", "return", "super", "if", "else", "for", "new", "null"));
+	private Set<String> reservedWords = new HashSet<>(Arrays.asList("class", "extends", "int", "string", "constructor",
+			"break", "print", "read", "return", "super", "if", "else", "for", "new", "null"));
 	@Getter
 	private List<Token> tokens = new ArrayList<>();
 	@Getter
@@ -53,10 +53,8 @@ public class LexicalAnalyser {
 					} else if (endOfLexeme == line.length() - 1) {
 						// ultimo char da linha
 						if (this.baseAutomata.isFinalState(state)) {
-							String lexeme = line.substring(startOfLexeme, endOfLexeme+1);
+							String lexeme = line.substring(startOfLexeme, endOfLexeme + 1);
 							this.tokens.add(this.st(state.getLabel(), lexeme, lineNumber, 0));
-						} else {
-							this.errors.add("melhorar isso daqui");
 						}
 					}
 
@@ -75,7 +73,7 @@ public class LexicalAnalyser {
 	}
 
 	// TODO: melhorar nome do metodo
-	private Token st(String stateName, String lexeme, int line , int word) {
+	private Token st(String stateName, String lexeme, int line, int word) {
 		lexeme = lexeme.trim();
 		int stateId = Integer.parseInt(stateName.replace("q", ""));
 		switch (stateId) {
@@ -115,9 +113,18 @@ public class LexicalAnalyser {
 		}
 		return null;
 	}
+
+	public void printTokens() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void printSymbolTable() {
+		// TODO Auto-generated method stub
+	}
+
+	public void printErrors() {
+		// TODO Auto-generated method stub
+
+	}
 }
-
-
-
-
-

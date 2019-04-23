@@ -21,51 +21,49 @@ import org.apache.commons.cli.ParseException;
 
 import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
 import br.ufsc.ine5426.compiladorxpp.lexicalanalyser.LexicalAnalyser;
-import br.ufsc.ine5426.compiladorxpp.lexicalanalyser.Token;
 
+/**
+ * Classe que possui o método principal que da o start no compilador.
+ */
 public class Main {
 
-	public static void main(String[] args) throws IOException {
+	/**
+	 * Pega o caminho para o arquivo que é o programa fonte através de uma opção -i
+	 * ao executar o .jar. Com isso, cria um AF a partir de um .txt criado pela
+	 * equipe e feito com base na gramática fornecida pelo professor. Além disso,
+	 * cria um AL que irá compilar o programa fonte.
+	 */
+	public static void main(String[] args) {
 		Options options = new Options();
 		options.addOption("i", "input", true, "caminho do arquivo de entrada");
 		CommandLineParser parser = new DefaultParser();
 		try {
 			CommandLine cmd = parser.parse(options, args);
 			if (cmd.hasOption("input")) {
-				doCompile(cmd);
+				var input = cmd.getOptionValue("i");
+				var lexicalAnalyser = new LexicalAnalyser(FiniteAutomata.Load("./baseAutomata.txt"));
+
+				if (lexicalAnalyser.compile(input)) {
+					System.out.println("Compilação bem-sucedida!");
+					System.out.println("Lista de tokens:");
+					lexicalAnalyser.printTokens();
+					System.out.println("Tabela de símbolos:");
+					lexicalAnalyser.printSymbolTable();
+				} else {
+					System.out.println("Compilação mal-sucedida. O(s) seguinte(s) problema(s) aconteceram:");
+					lexicalAnalyser.printErrors();
+				}
 			} else {
 				HelpFormatter formatter = new HelpFormatter();
-				formatter.printHelp("java -jar trabalho1.jar", options);
+				formatter.printHelp("java -jar {PATH_TO_JAR}compiladorxpp-1.0.jar", options);
 			}
 		} catch (ParseException e) {
-			// no time bro
+			System.out.println("Erro ao ler os argumentos passados através da linha de comando");
 			e.printStackTrace();
-		}
-	}
-
-	// TODO: fix it
-	private static boolean doCompile(CommandLine cmd) {
-
-		var input = cmd.getOptionValue("i");
-		try {
-			var la = new LexicalAnalyser(FiniteAutomata.Load("./baseAutomata.txt"));
-			la.compile(input);
-			for (Token token : la.getTokens()) {
-				System.out.println(token.getType() + " " + token.getName());
-			}
-
-
-			//			if (ll1.compile(input)){
-			//				System.out.println("Compilação bem-sucedida!");
-			//			}else{
-			//				System.out.println("Compilação mal-sucedida. O(s) seguinte(s) problema(s) aconteceram:");
-			//				ll1.getErrors().forEach(msg->System.out.println(msg));
-			//			}
 		} catch (IOException e) {
-			// no time bro
+			System.out.println("Erro ao ler o arquivo do autômato finito");
 			e.printStackTrace();
 		}
-
-		return false;
 	}
+
 }
