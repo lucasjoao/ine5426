@@ -47,6 +47,7 @@ public class Main {
 					System.out.println("Compilação bem-sucedida!");
 					System.out.println("Lista de tokens:");
 					lexicalAnalyser.printTokens();
+					System.out.println("\n");
 					System.out.println("Tabela de símbolos:");
 					lexicalAnalyser.printSymbolTable();
 				} else {
