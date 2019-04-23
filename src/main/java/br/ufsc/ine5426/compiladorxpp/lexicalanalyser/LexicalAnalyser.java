@@ -107,11 +107,11 @@ public class LexicalAnalyser {
 		case 20:
 			return new Token(TokenType.AROP, lexeme, line, word);
 		case 24:
-			return new Token(TokenType.NUMBER, lexeme, line, word);
+			return new Token(TokenType.INT_CONSTANT, lexeme, line, word);
 		case 25:
-			return new Token(this.reservedWords.contains(lexeme) ? TokenType.PR : TokenType.ID, lexeme, line, word);
+			return new Token(this.reservedWords.contains(lexeme) ? TokenType.PR : TokenType.IDENT, lexeme, line, word);
 		case 26:
-			return new Token(TokenType.STRING, lexeme, line, word);
+			return new Token(TokenType.STRING_CONSTANT, lexeme, line, word);
 		}
 		return null;
 	}

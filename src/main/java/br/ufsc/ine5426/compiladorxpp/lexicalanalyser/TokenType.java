@@ -2,13 +2,13 @@ package br.ufsc.ine5426.compiladorxpp.lexicalanalyser;
 
 public enum TokenType {
 	PR,
-	ID,
+	IDENT,
 	DELIMITER,
 	RELOP,
 	AROP,
 	BLOCK_OPEN,
 	BLOCK_CLOSE,
-	NUMBER,
-	STRING,
+	INT_CONSTANT,
+	STRING_CONSTANT,
 	POINT;
 }
