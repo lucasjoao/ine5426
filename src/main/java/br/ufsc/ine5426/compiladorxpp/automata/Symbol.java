@@ -23,20 +23,27 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Symbol {
 
+	// TODO: criar uma classe de constantes?
+	public static final Symbol EPSILON = new Symbol('$');
+	public static final Symbol CFG_EPSILON = new Symbol('&');
+	public static final Symbol CFG_EMPTY_STACK = new Symbol('$');
+	public static final Symbol ESCAPE = new Symbol('\'');
+
 	/**
 	 * String que representa o símbolo de entrada.
 	 */
 	private String content;
 
 	/**
-	 * É feito um tratamento sobre a entrada para deixá-la em caixa baixa e sem acentos. Dessa forma,
-	 * considera-se que se for feito a leitura no programa fonte do símbolo 'Á', o mesmo será tratado como
-	 * símbolo 'a'.
+	 * É feito um tratamento sobre a entrada para deixá-la em caixa baixa e sem
+	 * acentos. Dessa forma, considera-se que se for feito a leitura no programa
+	 * fonte do símbolo 'Á', o mesmo será tratado como símbolo 'a'.
 	 *
 	 * @param symbol char que será o símbolo de entrada em string
 	 */
 	public Symbol(Character symbol) {
-		this.content = Normalizer.normalize(Character.toString(Character.toLowerCase(symbol)), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+		this.content = Normalizer.normalize(Character.toString(Character.toLowerCase(symbol)), Normalizer.Form.NFD)
+				.replaceAll("[^\\p{ASCII}]", "");
 	}
 
 	/**
@@ -57,8 +64,8 @@ public class Symbol {
 	}
 
 	/**
-	 * hashCode é reimplementado por causa que o Symbol é utilizado em estruturas de dados que utilizam
-	 * desse valor.
+	 * hashCode é reimplementado por causa que o Symbol é utilizado em estruturas de
+	 * dados que utilizam desse valor.
 	 *
 	 * @see FiniteAutomata#Load(String)
 	 */
@@ -66,7 +73,10 @@ public class Symbol {
 	public int hashCode() {
 		return 31 + this.content.hashCode();
 	}
+
+	// TODO: verificar se comportamento ainda se aplica
+	public boolean isVariable() {
+		return this.content != null && this.content.startsWith("<") && this.content.endsWith(">");
+	}
+
 }
-
-
-

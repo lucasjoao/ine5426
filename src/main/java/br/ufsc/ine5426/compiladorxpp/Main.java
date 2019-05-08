@@ -21,6 +21,7 @@ import org.apache.commons.cli.ParseException;
 
 import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
 import br.ufsc.ine5426.compiladorxpp.lexicalanalyser.LexicalAnalyser;
+import br.ufsc.ine5426.compiladorxpp.syntacticanalyzer.LL1;
 
 /**
  * Classe que possui o método principal que da o start no compilador.
@@ -42,6 +43,7 @@ public class Main {
 			if (cmd.hasOption("input")) {
 				var input = cmd.getOptionValue("i");
 				var lexicalAnalyser = new LexicalAnalyser(FiniteAutomata.Load("./baseAutomata.txt"));
+				var ll1 = new LL1("./baseGrammar.txt", lexicalAnalyser);
 
 				if (lexicalAnalyser.compile(input)) {
 					System.out.println("Compilação bem-sucedida!");

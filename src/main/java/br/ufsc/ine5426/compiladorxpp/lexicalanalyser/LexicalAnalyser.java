@@ -24,6 +24,7 @@ import java.util.Set;
 
 import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
 import br.ufsc.ine5426.compiladorxpp.automata.State;
+import lombok.Getter;
 
 /**
  * Classe que representa o analisador léxico do compilador da linguagem X++.
@@ -48,6 +49,7 @@ public class LexicalAnalyser {
 	/**
 	 * Lista com os erros encontrados durante o processo de compilação.
 	 */
+	@Getter
 	private List<String> errors = new ArrayList<>();
 	/**
 	 * Mapa que representa a tabela de símbolos alimentada durante a análise léxica.
