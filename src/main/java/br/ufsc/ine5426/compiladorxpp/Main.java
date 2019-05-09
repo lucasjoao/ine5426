@@ -20,7 +20,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
-import br.ufsc.ine5426.compiladorxpp.lexicalanalyser.LexicalAnalyser;
+import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.LexicalAnalyser;
 import br.ufsc.ine5426.compiladorxpp.syntacticanalyzer.LL1;
 
 /**

@@ -8,7 +8,7 @@
  *
  */
 
-package br.ufsc.ine5426.compiladorxpp.lexicalanalyser;
+package br.ufsc.ine5426.compiladorxpp.lexicalanalyzer;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

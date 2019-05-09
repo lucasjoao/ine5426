@@ -12,9 +12,9 @@ import java.util.Stack;
 import br.ufsc.ine5426.compiladorxpp.automata.Symbol;
 import br.ufsc.ine5426.compiladorxpp.grammar.Body;
 import br.ufsc.ine5426.compiladorxpp.grammar.ContextFreeGrammar;
-import br.ufsc.ine5426.compiladorxpp.lexicalanalyser.LexicalAnalyser;
-import br.ufsc.ine5426.compiladorxpp.lexicalanalyser.Token;
-import br.ufsc.ine5426.compiladorxpp.lexicalanalyser.TokenType;
+import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.LexicalAnalyser;
+import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.Token;
+import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.TokenType;
 
 public class LL1 {
 

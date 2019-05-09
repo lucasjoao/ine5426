@@ -23,7 +23,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import br.ufsc.ine5426.compiladorxpp.lexicalanalyser.LexicalAnalyser;
+import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.LexicalAnalyser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

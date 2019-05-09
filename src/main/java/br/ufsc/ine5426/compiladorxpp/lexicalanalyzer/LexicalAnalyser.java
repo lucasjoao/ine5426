@@ -8,7 +8,7 @@
  *
  */
 
-package br.ufsc.ine5426.compiladorxpp.lexicalanalyser;
+package br.ufsc.ine5426.compiladorxpp.lexicalanalyzer;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
