@@ -8,10 +8,11 @@
  *
  */
 
-package br.ufsc.ine5426.compiladorxpp.automata;
+package br.ufsc.ine5426.compiladorxpp.common;
 
 import java.text.Normalizer;
 
+import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 
@@ -22,12 +23,6 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 public class Symbol {
-
-	// TODO: criar uma classe de constantes?
-	public static final Symbol EPSILON = new Symbol('$');
-	public static final Symbol CFG_EPSILON = new Symbol('&');
-	public static final Symbol CFG_EMPTY_STACK = new Symbol('$');
-	public static final Symbol ESCAPE = new Symbol('\'');
 
 	/**
 	 * String que representa o símbolo de entrada.

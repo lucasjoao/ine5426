@@ -10,6 +10,9 @@
 
 package br.ufsc.ine5426.compiladorxpp.lexicalanalyzer;
 
+import static br.ufsc.ine5426.compiladorxpp.common.Constants.ERROR_STATE;
+import static br.ufsc.ine5426.compiladorxpp.common.Constants.RETRACT_STATE;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -56,6 +59,8 @@ public class LexicalAnalyser {
 	 */
 	private Map<String, Token> table = new HashMap<>();
 
+	private int iterator;
+
 	/**
 	 * Construtor que recebe o autômato finito.
 	 *
@@ -84,6 +89,7 @@ public class LexicalAnalyser {
 	 *         léxico.
 	 */
 	public boolean compile(String path) {
+		this.iterator = 0;
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(path), Charset.defaultCharset());
 			int lineNumber = 1;
@@ -99,11 +105,11 @@ public class LexicalAnalyser {
 								"Erro encontrado na linha de número %s, coluna %s que possui o seguinte texto: %s",
 								lineNumber, startOfLexeme, line));
 						startOfLexeme = endOfLexeme;
-						if (State.ERROR_STATE.equals(state.getLabel())) {
+						if (ERROR_STATE.equals(state.getLabel())) {
 							endOfLexeme -= 1;
 						}
 						this.baseAutomata.resetAutomata();
-					} else if (State.RETRACT_STATE.equals(state.getLabel())) {
+					} else if (RETRACT_STATE.equals(state.getLabel())) {
 						String lexeme = line.substring(startOfLexeme, endOfLexeme);
 						Token token = this.createToken(this.baseAutomata.getOldState().getLabel(), lexeme, lineNumber,
 								startOfLexeme);
@@ -229,5 +235,13 @@ public class LexicalAnalyser {
 	 */
 	public void printErrors() {
 		this.errors.forEach(msg -> System.out.println(msg));
+	}
+
+	public boolean hasToken() {
+		return this.iterator < this.tokens.size();
+	}
+
+	public Token getNextToken() {
+		return this.tokens.get(this.iterator++);
 	}
 }

@@ -10,7 +10,10 @@
 
 package br.ufsc.ine5426.compiladorxpp.automata;
 
+import static br.ufsc.ine5426.compiladorxpp.common.Constants.ERROR_STATE;
+import static br.ufsc.ine5426.compiladorxpp.common.Constants.ERROR_STATE_CH_SPECIAL;
 
+import br.ufsc.ine5426.compiladorxpp.common.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,25 +35,6 @@ public class State implements Comparable<State> {
 	 * String que representa o nome do estado.
 	 */
 	private String label;
-
-	/**
-	 * Valor retirado do autômato desenvolvido pela equipe. Representa o estado
-	 * especial de retração.
-	 *
-	 */
-	public static final String RETRACT_STATE = "q27";
-	/**
-	 * Valor retirado do autômato desenvolvido pela equipe. Representa o estado
-	 * especial de erro.
-	 *
-	 */
-	public static final String ERROR_STATE = "q28";
-	/**
-	 * Valor retirado do autômato desenvolvido pela equipe. Representa o estado
-	 * especial de erro para determinados caracteres.
-	 *
-	 */
-	public static final String ERROR_STATE_CH_SPECIAL = "q29";
 
 	/**
 	 * Necessário por causa das estruturas de dados que o State compõe.
@@ -87,12 +71,13 @@ public class State implements Comparable<State> {
 	}
 
 	/**
-	 * Verifica se o estado é de erro, ou seja, se ele é igual {@link State#ERROR_STATE} ou {@link State#ERROR_STATE_CH_SPECIAL}.
+	 * Verifica se o estado é de erro, ou seja, se ele é igual
+	 * {@link Constants#ERROR_STATE} ou {@link Constants#ERROR_STATE_CH_SPECIAL}.
 	 *
 	 * @param label que representa o estado que será verificado
 	 * @return true se o estado representado pela label é de erro
 	 */
 	public static boolean isErrorState(String label) {
-		return State.ERROR_STATE.equals(label) || State.ERROR_STATE_CH_SPECIAL.equals(label);
+		return ERROR_STATE.equals(label) || ERROR_STATE_CH_SPECIAL.equals(label);
 	}
 }

@@ -3,7 +3,7 @@ package br.ufsc.ine5426.compiladorxpp.grammar;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.ufsc.ine5426.compiladorxpp.automata.Symbol;
+import br.ufsc.ine5426.compiladorxpp.common.Symbol;
 import lombok.Getter;
 
 @Getter
