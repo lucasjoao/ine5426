@@ -147,12 +147,18 @@ public class LexicalAnalyser {
 	 * @return um Token criado a partir dos parâmetros
 	 */
 	private Token createToken(String stateName, String lexeme, int line, int column) {
+		var numberOfWhitespace = 0;
+		for (char ch : lexeme.toCharArray()) {
+			if (Character.isWhitespace(ch)) {
+				numberOfWhitespace++;
+			}
+		}
+
 		// lexema pode vir com espaço no começo
 		lexeme = lexeme.trim();
-		// TODO: se tiver espaço em branco no começo da coluna, então esse será
-		// considerado o começo do lexema
-		column += 1; // necessario corrigir a coluna
+		column += numberOfWhitespace + 1; // necessario corrigir a coluna
 		int stateId = Integer.parseInt(stateName.replace("q", ""));
+
 		switch (stateId) {
 		case 1:
 		case 2:
@@ -212,12 +218,8 @@ public class LexicalAnalyser {
 	 */
 	public void printTokens() {
 		this.tokens.forEach(token -> {
-			// TODO: problema com a coluna vs espaço em branco
-			// String string = "%s %s - linha %s, coluna %s";
-			// String format = String.format(string, token.getType(), token.getName(),
-			// token.getLine(), token.getColumn());
-			String string = "%s %s - linha %s";
-			String format = String.format(string, token.getType(), token.getName(), token.getLine());
+			String string = "%s %s - linha %s, coluna %s";
+			String format = String.format(string, token.getType(), token.getName(), token.getLine(), token.getColumn());
 			System.out.println(format);
 		});
 

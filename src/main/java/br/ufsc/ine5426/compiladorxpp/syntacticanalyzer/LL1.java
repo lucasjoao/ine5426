@@ -194,7 +194,6 @@ public class LL1 {
 					}
 
 				} catch (Exception e) {
-					// TODO: verificar valores e frase
 					this.errors.add(String.format("Erro sintático na linha (%s), palavra (%s): lexema com problema: %s",
 							token.getLine(), token.getColumn(), token.getName()));
 					return;
@@ -205,9 +204,9 @@ public class LL1 {
 
 	private Symbol convertToken(Token token) {
 		String equivalent = "";
-		if (token.getType() == TokenType.IDENT) { // TODO: verificar se eh esse tipo mesmo
+		if (token.getType() == TokenType.IDENT) {
 			equivalent = "id";
-		} else if (token.getType() == TokenType.INT_CONSTANT) { // TODO: verificar se eh esse tipo mesmo
+		} else if (token.getType() == TokenType.INT_CONSTANT) {
 			equivalent = "num";
 		} else {
 			equivalent = token.getName();
