@@ -64,7 +64,7 @@ public class ContextFreeGrammar {
 	public Set<Symbol> getAllTerminals() {
 		Set<Symbol> terminals = new HashSet<>();
 		productions.values().forEach(i -> i.forEach(b -> terminals
-				.addAll(b.getSymbols().stream().filter(s -> !s.isVariable()).collect(Collectors.toSet()))));
+				.addAll(b.getSymbols().stream().filter(s -> !s.isNonTerminal()).collect(Collectors.toSet()))));
 		return terminals;
 	}
 }

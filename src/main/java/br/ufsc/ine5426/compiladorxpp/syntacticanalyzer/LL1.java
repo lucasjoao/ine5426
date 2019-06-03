@@ -80,7 +80,7 @@ public class LL1 {
 					int offset = 0;
 					for (var bodySymbol : body.getSymbols()) {
 						offset++;
-						if (!bodySymbol.isVariable()) {
+						if (!bodySymbol.isNonTerminal()) {
 							continue;
 						}
 						var firstSymbols = this.genBodyFirst(body, offset);
@@ -137,7 +137,7 @@ public class LL1 {
 
 		for (int i = offset; i < symbols.size(); i++) {
 			var symbol = symbols.get(i);
-			if (!symbol.isVariable()) {
+			if (!symbol.isNonTerminal()) {
 				first.add(symbol);
 				return first;
 			}
@@ -179,7 +179,7 @@ public class LL1 {
 		Symbol symbol = this.convertToken(token);
 		while (!this.stack.isEmpty()) {
 			var top = this.stack.peek();
-			if (!top.isVariable() && symbol.equals(top)) {
+			if (!top.isNonTerminal() && symbol.equals(top)) {
 				this.stack.pop();
 				return; // avanca leitura
 			} else {

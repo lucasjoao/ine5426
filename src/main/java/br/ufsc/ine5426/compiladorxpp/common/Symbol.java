@@ -69,8 +69,7 @@ public class Symbol {
 		return 31 + this.content.hashCode();
 	}
 
-	// TODO: verificar se comportamento ainda se aplica
-	public boolean isVariable() {
+	public boolean isNonTerminal() {
 		return this.content != null && this.content.startsWith("<") && this.content.endsWith(">");
 	}
 

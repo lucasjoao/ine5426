@@ -45,16 +45,10 @@ public class Main {
 				var lexicalAnalyser = new LexicalAnalyser(FiniteAutomata.Load("./baseAutomata.txt"));
 				var ll1 = new LL1("./baseGrammar.txt", lexicalAnalyser);
 
-				if (lexicalAnalyser.compile(input)) {
+				if (ll1.compile(input)) {
 					System.out.println("Compilação bem-sucedida!");
-					System.out.println("Lista de tokens:");
-					lexicalAnalyser.printTokens();
-					System.out.println("\n");
-					System.out.println("Tabela de símbolos:");
-					lexicalAnalyser.printSymbolTable();
 				} else {
-					System.out.println("Compilação mal-sucedida. O(s) seguinte(s) problema(s) aconteceram:");
-					lexicalAnalyser.printErrors();
+					System.out.println("Compilação mal-sucedida.");
 				}
 			} else {
 				HelpFormatter formatter = new HelpFormatter();
