@@ -1,53 +1,53 @@
-program -> classlist | &
-classlist -> classdecl classlist | classdecl
-classdecl -> class ident classdecl’ 
-classdecl’-> extends ident classbody | classbody
-classbody -> { V ; CD MD } | { classlist V ; CD MD }
-V -> vardecl V | &
-CD -> constructdecl CD | &
-MD -> methoddecl MD | &
-vardecl -> int ident COL VAR | string ident COL VAR | ident ident COL VAR 
-COL -> [] COL | & 
-VAR -> , ident COL VAR | &
-constructdecl -> constructor methodbody
-methoddecl -> int COL ident methodbody | string COL ident methodbody | ident COL ident methodbody
-methodbody -> (paramlist) statement
-paramlist -> int ident paramlist’
-paramlist’ -> COL ISI | COL
-ISI -> , ISI’ | &
-ISI’ -> int COL ISI | string COL ISI | ident COL ISI
-statement -> vardecl ; | atribstat ; | printstat ; | readstat ; | returnstat ; | ifstat ; | forstat ; | { statlist } | break; | ;
-atribstat -> lvalue = atribstat’
-atribstat’ -> expression | alocexpression 
-printstat -> print expression
-readstat -> read lvalue
-returnstat -> return returnstat’
-returnstat’ -> expression | &
-superstat -> super (arglist)
-ifstat -> if (expression) statement ifstat’
-ifstat’ -> else statement | &
-forstat -> for ( forstat’
-forstat’ -> atribstat ; forstat’’ | ; fortstat’’’
-forstat’’-> ; forstat’’’’ | expression ; forstat’’’’
-forstat’’’-> expression ; forstat’’’’ | ; atribstat) statement
-forstat’’’’-> atribstat) statement | ) statement
-statlist -> statement statlist’
-statlist’ -> statlist | &
-lvalue -> ident LV
-LV -> [expression] LV | .ident LV’ | &
-LV’ -> (arglist) LV | LV
-alocexpression -> new alocexpression’
-alocexpression’ -> ident alocexpression’’ | int EXPR | string EXPR
-alocexpression’’ -> (arglist) | EXPR
-EXPR -> expression EXPR’
-EXPR’ -> expression | &
-expression -> numexpression expression´
-expression’-> < numexpression | > numexpression | <= numexpression | >= numexpression | == numexpression | != numexpression | &
-numexpression -> term TM
-TM -> + term TM | - term TM | &
-term -> unaryexpr UE
-UE -> * unaryexpr UE | / unaryexpr UE | % unaryexpr UE | &
-unaryexpr -> + factor | - factor | factor
-factor -> int-constant | string-constant | null | lvalue (expression)
-arglist -> expression EXP | & 
-EXP -> , expression EXP | &
+<program> <classlist>	&
+<classlist> <classdecl> <classlist>	<classdecl>
+<classdecl> class ident <classdecl’> 
+<classdecl’> extends ident <classbody>	<classbody>
+<classbody> { <V> ; <CD> <MD> }	{ <classlist> <V> ; <CD> <MD> }
+<V> <vardecl> <V>	&
+<CD> <constructdecl> <CD>	&
+<MD> <methoddecl> <MD>	&
+<vardecl> int ident <COL> <VAR>	string ident <COL> <VAR>	ident ident <COL> <VAR> 
+<COL> [] <COL>	& 
+<VAR> , ident <COL> <VAR>	&
+<constructdecl> constructor <methodbody>
+<methoddecl> int <COL> ident <methodbody>	string <COL> ident <methodbody>	ident <COL> ident <methodbody>
+<methodbody> ( <paramlist> ) <statement>
+<paramlist> int ident <paramlist’>
+<paramlist’> <COL> <ISI>	<COL>
+<ISI> , <ISI’>	&
+<ISI’> int <COL> <ISI	string <COL> <ISI	ident <COL> <ISI>
+<statement> <vardecl> ;	<atribstat> ;	<printstat> ;	<readstat> ;	<returnstat> ;	<ifstat> ;	forstat ;	{ statlist }	break ;	;	<superstat> ;
+<atribstat> <lvalue> = <atribstat’>
+<atribstat’> <expression>	<alocexpression> 
+<printstat> print <expression>
+<readstat> read <lvalue>
+<returnstat> return <returnstat’>
+<returnstat’> <expression>	&
+<superstat> super ( <arglist> )
+<ifstat> if ( <expression> ) <statement> <ifstat’>
+<ifstat’> else <statement>	&
+<forstat> for ( <forstat’>
+<forstat’> <atribstat> ; <forstat’’>	; <forstat’’’>
+<forstat’’> ; <forstat’’’’>	<expression> ; <forstat’’’’>
+<forstat’’’> <expression> ; <forstat’’’’>	; <atribstat> ) <statement>
+<forstat’’’’> <atribstat> ) <statement>	) <statement>
+<statlist> <statement> <statlist’>
+<statlist’> <statlist>	&
+<lvalue> ident <LV>
+<LV> [ <expression> ] <LV>	. ident <LV’>	&
+<LV’> ( <arglist> ) <LV>	<LV>
+<alocexpression> new <alocexpression’>
+<alocexpression’> ident <alocexpression’’>	int <EXPR>	string <EXPR>
+<alocexpression’’> ( <arglist> )	<EXPR>
+<EXPR> <expression> <EXPR’>
+<EXPR’> <expression>	&
+<expression> <numexpression> <expression’>
+<expression’> < <numexpression>	> <numexpression>	<= <numexpression>	>= <numexpression>	== <numexpression>	!= <numexpression>	&
+<numexpression> <term> <TM>
+<TM> + <term> <TM>	- <term> <TM>	&
+<term> <unaryexpr> <UE>
+<UE> * <unaryexpr> <UE>	/ <unaryexpr> <UE>	% <unaryexpr> <UE>	&
+<unaryexpr> + <factor>	- <factor>	<factor>
+<factor> int-constant	string-constant	null	<lvalue> ( expression )
+<arglist> expression <EXP>	& 
+<EXP> , expression <EXP>	&
