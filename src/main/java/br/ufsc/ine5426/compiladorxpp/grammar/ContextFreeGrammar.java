@@ -67,4 +67,15 @@ public class ContextFreeGrammar {
 				.addAll(b.getSymbols().stream().filter(s -> !s.isNonTerminal()).collect(Collectors.toSet()))));
 		return terminals;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		productions.entrySet().forEach(entry -> {
+			builder.append(entry.getKey().toString());
+			entry.getValue().forEach(value -> builder.append(value.toString()));
+			builder.append("\n");
+		});
+		return builder.toString();
+	}
 }
