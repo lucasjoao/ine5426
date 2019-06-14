@@ -97,3 +97,5 @@ buildNumber.properties
 
 **/*.classpath
 **/*.project
+# i don't care to the consequences
+.idea/
