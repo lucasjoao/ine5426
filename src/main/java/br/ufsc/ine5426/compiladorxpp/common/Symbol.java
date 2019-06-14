@@ -13,14 +13,13 @@ package br.ufsc.ine5426.compiladorxpp.common;
 import java.text.Normalizer;
 
 import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
+import br.ufsc.ine5426.compiladorxpp.grammar.ContextFreeGrammar;
 import lombok.AllArgsConstructor;
-import lombok.ToString;
 
 /**
  * Classe que representa os símbolos de entrada do {@link FiniteAutomata}.
  *
  */
-@ToString
 @AllArgsConstructor
 public class Symbol {
 
@@ -71,6 +70,16 @@ public class Symbol {
 
 	public boolean isNonTerminal() {
 		return this.content != null && this.content.startsWith("<") && this.content.endsWith(">");
+	}
+
+	/**
+	 * Reimplementado para facilitar a realização de outro toString.
+	 *
+	 * @see ContextFreeGrammar#toString()
+	 */
+	@Override
+	public String toString() {
+		return this.content;
 	}
 
 }

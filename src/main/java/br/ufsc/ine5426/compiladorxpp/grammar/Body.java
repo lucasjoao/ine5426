@@ -14,11 +14,11 @@ public class Body {
 
 	public Body(int id) {
 		this.id = id;
-		symbols = new ArrayList<>();
+		this.symbols = new ArrayList<>();
 	}
 
 	public void addSymbol(Symbol symbol) {
-		symbols.add(symbol);
+		this.symbols.add(symbol);
 	}
 
 	@Override
@@ -28,13 +28,28 @@ public class Body {
 		}
 		if (obj instanceof Body) {
 			Body body = (Body) obj;
-			return body.id == id;
+			return body.id == this.id;
 		}
 		return false;
 	}
 
 	@Override
 	public int hashCode() {
-		return id ^ (id >>> 32);
+		return this.id ^ (this.id >>> 32);
+	}
+
+	/**
+	 * Reimplementado para facilitar a realização de outro toString.
+	 *
+	 * @see ContextFreeGrammar#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		this.symbols.forEach(i -> {
+			builder.append(i.toString());
+			builder.append(" ");
+		});
+		return builder.toString();
 	}
 }

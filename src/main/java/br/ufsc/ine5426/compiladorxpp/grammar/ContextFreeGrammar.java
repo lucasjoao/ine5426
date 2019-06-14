@@ -58,22 +58,30 @@ public class ContextFreeGrammar {
 	}
 
 	public Set<Symbol> getAllVariables() {
-		return productions.keySet().stream().collect(Collectors.toSet());
+		return this.productions.keySet().stream().collect(Collectors.toSet());
 	}
 
 	public Set<Symbol> getAllTerminals() {
 		Set<Symbol> terminals = new HashSet<>();
-		productions.values().forEach(i -> i.forEach(b -> terminals
+		this.productions.values().forEach(i -> i.forEach(b -> terminals
 				.addAll(b.getSymbols().stream().filter(s -> !s.isNonTerminal()).collect(Collectors.toSet()))));
 		return terminals;
 	}
 
+	/**
+	 * Retorna uma String que possui um formato similar ao .txt que alimenta o CFG.
+	 * Utilizado para debug.
+	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		productions.entrySet().forEach(entry -> {
+		this.productions.entrySet().forEach(entry -> {
 			builder.append(entry.getKey().toString());
-			entry.getValue().forEach(value -> builder.append(value.toString()));
+			builder.append(" ");
+			entry.getValue().forEach(value -> {
+				builder.append(value.toString());
+				builder.append(" ");
+			});
 			builder.append("\n");
 		});
 		return builder.toString();
