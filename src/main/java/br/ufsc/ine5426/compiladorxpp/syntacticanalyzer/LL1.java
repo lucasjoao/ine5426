@@ -213,4 +213,45 @@ public class LL1 {
 		}
 		return new Symbol(equivalent);
 	}
+
+	/**
+	 * Retorna uma String que possui o conjunto de First, Follow e a tabela do LL1.
+	 * Utilizado para debug.
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+
+		builder.append("FIRST:").append("\n");
+		this.firsts.entrySet().forEach(entry -> {
+			builder.append(entry.getKey().toString()).append(" ");
+			entry.getValue().forEach(i -> {
+				builder.append(i.toString()).append(" ");
+			});
+			builder.append("\n");
+		});
+
+		builder.append("\n");
+		builder.append("FOLLOW:").append("\n");
+		this.follows.entrySet().forEach(entry -> {
+			builder.append(entry.getKey().toString()).append(" ");
+			entry.getValue().forEach(i -> {
+				builder.append(i.toString()).append(" ");
+			});
+			builder.append("\n");
+		});
+
+		builder.append("\n");
+		builder.append("TABLE:").append("\n");
+		this.table.entrySet().forEach(entry -> {
+			builder.append(entry.getKey().toString()).append(" ");
+			entry.getValue().entrySet().forEach(innerEntry -> {
+				builder.append("NT: ").append(innerEntry.getKey().toString()).append(" ");
+				builder.append("Resultado: ").append(innerEntry.getValue().toString()).append(" ");
+			});
+			builder.append("\n");
+		});
+
+		return builder.toString();
+	}
 }
