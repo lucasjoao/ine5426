@@ -12,10 +12,10 @@
 <constructdecl>	constructor <methodbody>
 <methoddecl>	int <COL> ident <methodbody>	string <COL> ident <methodbody>	ident <COL> ident <methodbody>
 <methodbody>	( <paramlist> ) <statement>
-<paramlist>	int ident <paramlist’>
+<paramlist>	int ident <paramlist’>	string ident <paramlist’>	ident ident <paramlist’>	&
 <paramlist’>	<COL> <ISI>	<COL>
 <ISI>	, <ISI’>	&
-<ISI’>	int <COL> <ISI	string <COL> <ISI	ident <COL> <ISI>
+<ISI’>	int ident <COL> <ISI>	string ident <COL> <ISI>	ident ident <COL> <ISI>
 <statement>	<vardecl> ;	<atribstat> ;	<printstat> ;	<readstat> ;	<returnstat> ;	<ifstat> ;	forstat ;	{ statlist }	break ;	;	<superstat> ;
 <atribstat>	<lvalue> = <atribstat’>
 <atribstat’>	<expression>	<alocexpression>
