@@ -10,7 +10,7 @@
 <MD>	<methoddecl> <MD>	&
 <vardecl>	<ISI> ident <COL> <VAR>
 <ISI>	int	string	ident
-<COL>	[] <COL>	&
+<COL>	[ ] <COL>	&
 <VAR>	, ident <COL> <VAR>	&
 <constructdecl>	constructor <methodbody>
 <methoddecl>	<ISI> <COL> ident <methodbody>
