@@ -1,10 +1,11 @@
 <program>	<classlist>	&
-<classlist>	<classdecl> <classlist>	<classdecl>
+<classlist>	<classdecl> <classlist’>
+<classlist’>	<classdecl> <classlist’>	&
 <classdecl>	class ident <classdecl’>
 <classdecl’>	extends ident <classbody>	<classbody>
 <classbody>	{ <classbody’>
 <classbody’>	<V> <CD> <MD> }	<classlist> <V> <CD> <MD> }
-<V>	<vardecl> <V>	&
+<V>	<vardecl> ; <V>	&
 <CD>	<constructdecl> <CD>	&
 <MD>	<methoddecl> <MD>	&
 <vardecl>	<ISI> ident <COL> <VAR>
@@ -39,8 +40,8 @@
 <alocexpression>	new <alocexpression’>
 <alocexpression’>	ident <alocexpression’’>	int <EXPR>	string <EXPR>
 <alocexpression’’>	( <arglist> )	<EXPR>
-<EXPR>	<expression> <EXPR’>
-<EXPR’>	<expression>	&
+<EXPR>	[ <expression> ] <EXPR’>
+<EXPR’>	[ <expression> ]	&
 <expression>	<numexpression> <expression’>
 <expression’>	< <numexpression>	> <numexpression>	<= <numexpression>	>= <numexpression>	== <numexpression>	!= <numexpression>	&
 <numexpression>	<term> <TM>
