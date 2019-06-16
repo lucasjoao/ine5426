@@ -194,7 +194,7 @@ public class LL1 {
 					}
 
 				} catch (Exception e) {
-					this.errors.add(String.format("Erro sintático na linha (%s), palavra (%s): lexema com problema: %s",
+					this.errors.add(String.format("Erro sintático na linha (%s), coluna (%s): lexema com problema: %s",
 							token.getLine(), token.getColumn(), token.getName()));
 					return;
 				}
@@ -205,9 +205,9 @@ public class LL1 {
 	private Symbol convertToken(Token token) {
 		String equivalent = "";
 		if (token.getType() == TokenType.IDENT) {
-			equivalent = "id";
+			equivalent = "ident";
 		} else if (token.getType() == TokenType.INT_CONSTANT) {
-			equivalent = "num";
+			equivalent = "int-constant";
 		} else {
 			equivalent = token.getName();
 		}
@@ -246,8 +246,8 @@ public class LL1 {
 		this.table.entrySet().forEach(entry -> {
 			builder.append(entry.getKey().toString()).append(" ");
 			entry.getValue().entrySet().forEach(innerEntry -> {
-				builder.append("NT: ").append(innerEntry.getKey().toString()).append(" ");
-				builder.append("Resultado: ").append(innerEntry.getValue().toString()).append(" ");
+				builder.append("TERMINAL: ").append(innerEntry.getKey().toString()).append(" ");
+				builder.append("RESULTADO: ").append(innerEntry.getValue().toString()).append(" ");
 			});
 			builder.append("\n");
 		});
