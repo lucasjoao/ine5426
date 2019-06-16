@@ -2,20 +2,20 @@
 <classlist>	<classdecl> <classlist>	<classdecl>
 <classdecl>	class ident <classdecl’>
 <classdecl’>	extends ident <classbody>	<classbody>
-<classbody>	{ <V> ; <CD> <MD> }	{ <classlist> <V> ; <CD> <MD> }
+<classbody>	{ <classbody’>
+<classbody’>	<V> <CD> <MD> }	<classlist> <V> <CD> <MD> }
 <V>	<vardecl> <V>	&
 <CD>	<constructdecl> <CD>	&
 <MD>	<methoddecl> <MD>	&
-<vardecl>	int ident <COL> <VAR>	string ident <COL> <VAR>	ident ident <COL> <VAR>
+<vardecl>	<ISI> ident <COL> <VAR>
+<ISI>	int	string	ident
 <COL>	[] <COL>	&
 <VAR>	, ident <COL> <VAR>	&
 <constructdecl>	constructor <methodbody>
-<methoddecl>	int <COL> ident <methodbody>	string <COL> ident <methodbody>	ident <COL> ident <methodbody>
+<methoddecl>	<ISI> <COL> ident <methodbody>
 <methodbody>	( <paramlist> ) <statement>
-<paramlist>	int ident <paramlist’>	string ident <paramlist’>	ident ident <paramlist’>	&
-<paramlist’>	<COL> <ISI>	<COL>
-<ISI>	, <ISI’>	&
-<ISI’>	int ident <COL> <ISI>	string ident <COL> <ISI>	ident ident <COL> <ISI>
+<paramlist>	<ISI> <COL> <ISICOL>	&
+<ISICOL>	, <ISI> ident <COL> <ISICOL>	&
 <statement>	<vardecl> ;	<atribstat> ;	<printstat> ;	<readstat> ;	<returnstat> ;	<ifstat> ;	forstat ;	{ statlist }	break ;	;	<superstat> ;
 <atribstat>	<lvalue> = <atribstat’>
 <atribstat’>	<expression>	<alocexpression>
