@@ -1,54 +1,54 @@
-<program>	<classlist>	&
-<classlist>	<classdecl> <classlist’>
-<classlist’>	<classdecl> <classlist’>	&
-<classdecl>	class ident <classdecl’>
-<classdecl’>	extends ident <classbody>	<classbody>
-<classbody>	{ <classbody’>
-<classbody’>	<V> <CD> <MD> }	<classlist> <V> <CD> <MD> }
-<V>	<vardecl> ; <V>	&
-<CD>	<constructdecl> <CD>	&
-<MD>	<methoddecl> <MD>	&
-<vardecl>	<ISI> ident <COL> <VAR>
+<PROGRAM>	<CLASSLIST>	&
+<CLASSLIST>	<CLASSDECL> <CLASSLIST’>
+<CLASSLIST’>	<CLASSDECL> <CLASSLIST’>	&
+<CLASSDECL>	class ident <CLASSDECL’>
+<CLASSDECL’>	extends ident <CLASSBODY>	<CLASSBODY>
+<CLASSBODY>	{ <CLASSBODY’>
+<CLASSBODY’>	<V> <CD> <MD> }	<CLASSLIST> <V> <CD> <MD> }
+<V>	<VARDECL> ; <V>	&
+<CD>	<CONSTRUCTDECL> <CD>	&
+<MD>	<METHODDECL> <MD>	&
+<VARDECL>	<ISI> ident <COL> <VAR>
 <ISI>	int	string	ident
 <COL>	[ ] <COL>	&
 <VAR>	, ident <COL> <VAR>	&
-<constructdecl>	constructor <methodbody>
-<methoddecl>	<ISI> <COL> ident <methodbody>
-<methodbody>	( <paramlist> ) <statement>
-<paramlist>	<ISI> <COL> <ISICOL>	&
+<CONSTRUCTDECL>	constructor <METHODBODY>
+<METHODDECL>	<ISI> <COL> ident <METHODBODY>
+<METHODBODY>	( <PARAMLIST> ) <STATEMENT>
+<PARAMLIST>	<ISI> <COL> <ISICOL>	&
 <ISICOL>	, <ISI> ident <COL> <ISICOL>	&
-<statement>	<vardecl> ;	<atribstat> ;	<printstat> ;	<readstat> ;	<returnstat> ;	<ifstat> ;	forstat ;	{ statlist }	break ;	;	<superstat> ;
-<atribstat>	<lvalue> = <atribstat’>
-<atribstat’>	<expression>	<alocexpression>
-<printstat>	print <expression>
-<readstat>	read <lvalue>
-<returnstat>	return <returnstat’>
-<returnstat’>	<expression>	&
-<superstat>	super ( <arglist> )
-<ifstat>	if ( <expression> ) <statement> <ifstat’>
-<ifstat’>	else <statement>	&
-<forstat>	for ( <forstat’>
-<forstat’>	<atribstat> ; <forstat’’>	; <forstat’’’>
-<forstat’’>	; <forstat’’’’>	<expression> ; <forstat’’’’>
-<forstat’’’>	<expression> ; <forstat’’’’>	; <atribstat> ) <statement>
-<forstat’’’’>	<atribstat> ) <statement>	) <statement>
-<statlist>	<statement> <statlist’>
-<statlist’>	<statlist>	&
-<lvalue>	ident <LV>
-<LV>	[ <expression> ] <LV>	. ident <LV’>	&
-<LV’>	( <arglist> ) <LV>	<LV>
-<alocexpression>	new <alocexpression’>
-<alocexpression’>	ident <alocexpression’’>	int <EXPR>	string <EXPR>
-<alocexpression’’>	( <arglist> )	<EXPR>
-<EXPR>	[ <expression> ] <EXPR’>
-<EXPR’>	[ <expression> ]	&
-<expression>	<numexpression> <expression’>
-<expression’>	< <numexpression>	> <numexpression>	<= <numexpression>	>= <numexpression>	== <numexpression>	!= <numexpression>	&
-<numexpression>	<term> <TM>
-<TM>	+ <term> <TM>	- <term> <TM>	&
-<term>	<unaryexpr> <UE>
-<UE>	* <unaryexpr> <UE>	/ <unaryexpr> <UE>	% <unaryexpr> <UE>	&
-<unaryexpr>	+ <factor>	- <factor>	<factor>
-<factor>	int-constant	string-constant	null	<lvalue> ( expression )
-<arglist>	expression <EXP>	&
-<EXP>	, expression <EXP>	&
+<STATEMENT>	<VARDECL> ;	<ATRIBSTAT> ;	<PRINTSTAT> ;	<READSTAT> ;	<RETURNSTAT> ;	<IFSTAT> ;	<FORSTAT> ;	{ <STATLIST> }	break ;	;	<SUPERSTAT> ;
+<ATRIBSTAT>	<LVALUE> = <ATRIBSTAT’>
+<ATRIBSTAT’>	<EXPRESSION>	<ALOCEXPRESSION>
+<PRINTSTAT>	print <EXPRESSION>
+<READSTAT>	read <LVALUE>
+<RETURNSTAT>	return <RETURNSTAT’>
+<RETURNSTAT’>	<EXPRESSION>	&
+<SUPERSTAT>	super ( <ARGLIST> )
+<IFSTAT>	if ( <EXPRESSION> ) <STATEMENT> <IFSTAT’>
+<IFSTAT’>	else <STATEMENT>	&
+<FORSTAT>	for ( <FORSTAT’>
+<FORSTAT’>	<ATRIBSTAT> ; <FORSTAT’’>	; <FORSTAT’’’>
+<FORSTAT’’>	; <FORSTAT’’’’>	<EXPRESSION> ; <FORSTAT’’’’>
+<FORSTAT’’’>	<EXPRESSION> ; <FORSTAT’’’’>	; <ATRIBSTAT> ) <STATEMENT>
+<FORSTAT’’’’>	<ATRIBSTAT> ) <STATEMENT>	) <STATEMENT>
+<STATLIST>	<STATEMENT> <STATLIST’>
+<STATLIST’>	<STATLIST>	&
+<LVALUE>	ident <LV>
+<LV>	[ <EXPRESSION> ] <LV>	. ident <LV’>	&
+<LV’>	( <ARGLIST> ) <LV>	<LV>
+<ALOCEXPRESSION>	new <ALOCEXPRESSION’>
+<ALOCEXPRESSION’>	ident <ALOCEXPRESSION’’>	int <EXPR>	string <EXPR>
+<ALOCEXPRESSION’’>	( <ARGLIST> )	<EXPR>
+<EXPR>	[ <EXPRESSION> ] <EXPR’>
+<EXPR’>	[ <EXPRESSION> ]	&
+<EXPRESSION>	<NUMEXPRESSION> <EXPRESSION’>
+<EXPRESSION’>	< <NUMEXPRESSION>	> <NUMEXPRESSION>	<= <NUMEXPRESSION>	>= <NUMEXPRESSION>	== <NUMEXPRESSION>	!= <NUMEXPRESSION>	&
+<NUMEXPRESSION>	<TERM> <TM>
+<TM>	+ <TERM> <TM>	- <TERM> <TM>	&
+<TERM>	<UNARYEXPR> <UE>
+<UE>	* <UNARYEXPR> <UE>	/ <UNARYEXPR> <UE>	% <UNARYEXPR> <UE>	&
+<UNARYEXPR>	+ <FACTOR>	- <FACTOR>	<FACTOR>
+<FACTOR>	int-constant	string-constant	null	<LVALUE> ( <EXPRESSION> )
+<ARGLIST>	<EXPRESSION> <EXP>	&
+<EXP>	, <EXPRESSION> <EXP>	&
