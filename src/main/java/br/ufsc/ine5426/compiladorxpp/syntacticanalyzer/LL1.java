@@ -22,7 +22,7 @@ import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.TokenType;
 public class LL1 {
 
 	private List<String> errors = new ArrayList<>();
-	private Map<Symbol, Map<Symbol, Body>> table;
+	private Map<Symbol, Map<Symbol, List<Body>>> table;
 	private ContextFreeGrammar grammar;
 	private Map<Symbol, Set<Symbol>> firsts;
 	private Map<Symbol, Set<Symbol>> follows;
@@ -119,14 +119,24 @@ public class LL1 {
 			for (var body : productions.get(key)) {
 				var symbols = this.genBodyFirst(body, 0);
 				for (var symbol : symbols) {
+					this.helperTableCreation(key, symbol);
 					if (symbol.equals(CFG_EPSILON)) {
-						this.follows.get(key).forEach(s -> this.table.get(key).put(s, eBody));
+						this.follows.get(key).forEach(s -> {
+							this.helperTableCreation(key, s);
+							this.table.get(key).get(s).add(eBody);
+						});
 					} else {
-						this.table.get(key).put(symbol, body);
+						this.table.get(key).get(symbol).add(body);
 					}
 
 				}
 			}
+		}
+	}
+
+	private void helperTableCreation(Symbol nonTerminal, Symbol symbol) {
+		if (!this.table.get(nonTerminal).containsKey(symbol)) {
+			this.table.get(nonTerminal).put(symbol, new ArrayList<>());
 		}
 	}
 
@@ -184,7 +194,15 @@ public class LL1 {
 				return; // avanca leitura
 			} else {
 				try {
-					var symbols = this.table.get(top).get(symbol).getSymbols();
+					List<Body> bodies = this.table.get(top).get(symbol);
+
+					List<Symbol> symbols;
+					if (bodies.size() > 1) {
+						symbols = this.defineWhichSymbols(bodies);
+					} else {
+						symbols = bodies.get(0).getSymbols();
+					}
+
 					this.stack.pop();
 					for (int i = symbols.size() - 1; i >= 0; i--) {
 						Symbol is = symbols.get(i);
@@ -202,12 +220,82 @@ public class LL1 {
 		}
 	}
 
+	private List<Symbol> defineWhichSymbols(List<Body> bodies) {
+		var canReturnEpsilon = false;
+		List<Symbol> eSymbols = null;
+
+		for (Body body : bodies) {
+			for (Symbol symbol : body.getSymbols()) {
+				if (symbol.equals(CFG_EPSILON)) {
+					canReturnEpsilon = true;
+					eSymbols = body.getSymbols();
+					break;
+				}
+			}
+			if (canReturnEpsilon) {
+				break;
+			}
+		}
+
+		Token nextToken = this.lexicalAnalyser.seeNextToken();
+		Symbol nextSymbol = this.convertToken(nextToken);
+		List<Symbol> symbols = null;
+
+		for (Body body : bodies) {
+			for (Symbol symbol : body.getSymbols()) {
+				var foundInProductions = false;
+				if (symbol.isNonTerminal()) {
+					foundInProductions = this.helperDefineWhichSymbols(symbol);
+				}
+
+				if (symbol.equals(nextSymbol) || foundInProductions) {
+					symbols = body.getSymbols();
+					break;
+				}
+			}
+			if (symbols != null) {
+				break;
+			}
+		}
+
+		if (canReturnEpsilon && symbols == null) {
+			symbols = eSymbols;
+		}
+
+		// if this be null, then we need debug looking for problems
+		return symbols;
+	}
+
+	private boolean helperDefineWhichSymbols(Symbol symbolToSearch) {
+		boolean result = false;
+		List<Body> bodiesFromProduction = this.grammar.getProductions().get(symbolToSearch);
+		for (Body body : bodiesFromProduction) {
+			for (Symbol symbol : body.getSymbols()) {
+				result = symbolToSearch.equals(symbol);
+
+				if (!result && symbol.isNonTerminal()) {
+					result = this.helperDefineWhichSymbols(symbol);
+				}
+
+				if (result) {
+					break;
+				}
+			}
+			if (result) {
+				break;
+			}
+		}
+		return result;
+	}
+
 	private Symbol convertToken(Token token) {
 		String equivalent = "";
 		if (token.getType() == TokenType.IDENT) {
 			equivalent = "ident";
 		} else if (token.getType() == TokenType.INT_CONSTANT) {
 			equivalent = "int-constant";
+		} else if (token.getType() == TokenType.STRING_CONSTANT) {
+			equivalent = "string-constant";
 		} else {
 			equivalent = token.getName();
 		}
