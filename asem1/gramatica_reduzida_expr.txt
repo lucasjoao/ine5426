@@ -1,0 +1,23 @@
+EXPR:
+
+NUMEXPRESSION -> TERM TERMS 
+
+TERMS -> + TERM TERMS |
+         - TERM TERMS | &
+
+TERM -> UNARYEXPR UNARYEXPRS
+
+UNARYEXPRS -> * UNARYEXPR UNARYEXPRS |
+              / UNARYEXPR UNARYEXPRS |
+              % UNARYEXPR UNARYEXPRS | &
+
+UNARYEXPR -> + FACTOR |
+             - FACTOR |
+             FACTOR
+
+FACTOR -> int-constant  |
+          ident COL |
+          ( NUMEXPRESSION )
+
+COL -> [int-constant] COL | &
+

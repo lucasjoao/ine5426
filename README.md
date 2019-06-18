@@ -1,13 +1,13 @@
 # INE5426
 
-Analisador léxico para a linguagem X++ desenvolvido em Java 10 por Christian de Pieri, Jacyara Bosse, Lucas João Martins e Nathália Liz de Brito para a disciplina INE5426 da UFSC.
+Segundo trabalho desenvolvido em Java 10 e ANTLR por Christian de Pieri, Jacyara Bosse, Lucas João Martins e Nathália Liz de Brito para a disciplina INE5426 da UFSC.
 
-### Build e execução ###
+### Organização ###
 
-Requisitos:
-- java 10
-- gerenciador de dependências maven
+Pasta fontes possui programas na linguagem xpp.
 
-Para compilar o analisador léxico execute `make build`.
+Pasta build possui a dependência necessária para execução do ANTLR.
 
-Para executar o analisador léxico, ou seja, compilar um programa fonte da linguagem X++, execute `make`.
+Pasta as2 possui duas tentativas de desenvolvimento da tarefa as2, uma usando somente java e outra com o ANTLR.
+
+Pasta asem1 possui o desenvolvimento da tarefa asem1.

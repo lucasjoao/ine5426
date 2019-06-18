@@ -1,0 +1,9 @@
+VARDECL -> TIPO ident COL VARDECL
+
+TIPO -> int-constant | ident
+
+COL -> [] COL | &
+
+MVARDECL -> VIRGULA MVARDECL | &
+
+VIRGULA -> , IDENT COL
