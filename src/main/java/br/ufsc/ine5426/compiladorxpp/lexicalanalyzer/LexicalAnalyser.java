@@ -246,4 +246,8 @@ public class LexicalAnalyser {
 	public Token getNextToken() {
 		return this.tokens.get(this.iterator++);
 	}
+
+	public Token seeNextToken() {
+		return this.hasToken() ? this.tokens.get(this.iterator) : null;
+	}
 }
