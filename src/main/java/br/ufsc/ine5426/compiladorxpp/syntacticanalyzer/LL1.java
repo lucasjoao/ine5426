@@ -37,6 +37,7 @@ public class LL1 {
 		this.stack = new Stack<>();
 		this.errors = new ArrayList<>();
 		this.prepareLLC();
+		System.out.println(this.toString());
 	}
 
 	private void prepareLLC() {
@@ -172,6 +173,7 @@ public class LL1 {
 				Token token = this.lexicalAnalyser.getNextToken();
 				this.operate(token);
 				if (this.errors.size() > 0) {
+					this.errors.forEach(i -> System.out.println(i));
 					return false;
 				}
 			}
@@ -194,6 +196,10 @@ public class LL1 {
 				return; // avanca leitura
 			} else {
 				try {
+					System.out.println("Meu NT: " + top.toString());
+					System.out.println("Meu símbolo: " + symbol.toString());
+					this.table.get(top).keySet().forEach(i -> System.out.println("Espero: " + i.toString()));
+
 					List<Body> bodies = this.table.get(top).get(symbol);
 
 					List<Symbol> symbols;
@@ -206,6 +212,7 @@ public class LL1 {
 					this.stack.pop();
 					for (int i = symbols.size() - 1; i >= 0; i--) {
 						Symbol is = symbols.get(i);
+						System.out.println("Símbolo add na pilha: " + is.toString());
 						if (!is.equals(CFG_EPSILON)) {
 							this.stack.push(is);
 						}
