@@ -138,6 +138,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitXppll1(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitXppll1(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Xppll1Context xppll1() throws RecognitionException {
@@ -176,6 +181,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitProgram(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitProgram(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -233,6 +243,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitClasslist(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitClasslist(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ClasslistContext classlist() throws RecognitionException {
@@ -277,6 +292,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitClasslistb(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitClasslistb(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -336,6 +356,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitClassdecl(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitClassdecl(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ClassdeclContext classdecl() throws RecognitionException {
@@ -394,6 +419,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitClassbody(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitClassbody(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ClassbodyContext classbody() throws RecognitionException {
@@ -443,6 +473,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitClassbodyb(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitClassbodyb(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -519,6 +554,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitVardecls(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitVardecls(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final VardeclsContext vardecls() throws RecognitionException {
@@ -575,6 +615,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitConstructdecls(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitConstructdecls(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -636,6 +681,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitMethoddecls(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitMethoddecls(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final MethoddeclsContext methoddecls() throws RecognitionException {
@@ -689,6 +739,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitType(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitType(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -745,6 +800,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitVardecl(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitVardecl(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final VardeclContext vardecl() throws RecognitionException {
@@ -786,6 +846,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitBrackets(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitBrackets(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -844,6 +909,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitMultivardecl(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitMultivardecl(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final MultivardeclContext multivardecl() throws RecognitionException {
@@ -899,6 +969,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitVardeclcomma(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitVardeclcomma(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final VardeclcommaContext vardeclcomma() throws RecognitionException {
@@ -941,6 +1016,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitConstructdecl(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitConstructdecl(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -990,6 +1070,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitMethoddecl(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitMethoddecl(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final MethoddeclContext methoddecl() throws RecognitionException {
@@ -1037,6 +1122,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitMethodbody(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitMethodbody(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1089,6 +1179,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitParamlist(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitParamlist(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1156,6 +1251,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitMultiparam(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitMultiparam(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1241,6 +1341,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitStatment(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitStatment(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1399,6 +1504,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitVaroratrib(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitVaroratrib(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final VaroratribContext varoratrib() throws RecognitionException {
@@ -1471,6 +1581,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitAtribstat(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitAtribstat(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final AtribstatContext atribstat() throws RecognitionException {
@@ -1518,6 +1633,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitAtribstatb(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitAtribstatb(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1579,6 +1699,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitPrintstat(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitPrintstat(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final PrintstatContext printstat() throws RecognitionException {
@@ -1620,6 +1745,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitReadstat(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitReadstat(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1664,6 +1794,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitReturnstat(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitReturnstat(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ReturnstatContext returnstat() throws RecognitionException {
@@ -1704,6 +1839,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitReturnstatb(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitReturnstatb(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1763,6 +1903,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitSuperstat(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitSuperstat(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final SuperstatContext superstat() throws RecognitionException {
@@ -1813,6 +1958,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitIfstat(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitIfstat(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1889,6 +2039,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitForstat(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitForstat(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ForstatContext forstat() throws RecognitionException {
@@ -1938,6 +2093,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitInsidefor(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitInsidefor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2001,6 +2161,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitInsideforb(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitInsideforb(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2068,6 +2233,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitInsideforc(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitInsideforc(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final InsideforcContext insideforc() throws RecognitionException {
@@ -2123,6 +2293,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitStatlist(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitStatlist(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final StatlistContext statlist() throws RecognitionException {
@@ -2163,6 +2338,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitStatlistb(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitStatlistb(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2232,6 +2412,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitLvalue(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitLvalue(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2318,6 +2503,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitLvalueb(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitLvalueb(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final LvaluebContext lvalueb() throws RecognitionException {
@@ -2393,6 +2583,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitAlocexpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitAlocexpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final AlocexpressionContext alocexpression() throws RecognitionException {
@@ -2437,6 +2632,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitAlocexpressionb(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitAlocexpressionb(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2508,6 +2708,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitAlocexpressionc(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitAlocexpressionc(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final AlocexpressioncContext alocexpressionc() throws RecognitionException {
@@ -2569,6 +2774,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitExpressions(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitExpressions(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ExpressionsContext expressions() throws RecognitionException {
@@ -2613,6 +2823,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitExpressionsb(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitExpressionsb(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2670,6 +2885,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ExpressionContext expression() throws RecognitionException {
@@ -2713,6 +2933,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitExpressionb(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitExpressionb(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2798,6 +3023,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitExpressionc(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitExpressionc(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ExpressioncContext expressionc() throws RecognitionException {
@@ -2863,6 +3093,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitNumexpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitNumexpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final NumexpressionContext numexpression() throws RecognitionException {
@@ -2906,6 +3141,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitTerms(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitTerms(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2984,6 +3224,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitTerm(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitTerm(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final TermContext term() throws RecognitionException {
@@ -3027,6 +3272,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitUnaryexprs(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitUnaryexprs(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3115,6 +3365,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitUnaryexpr(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitUnaryexpr(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final UnaryexprContext unaryexpr() throws RecognitionException {
@@ -3189,6 +3444,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitFactor(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitFactor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3274,6 +3534,11 @@ public class xppll1Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitArglist(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitArglist(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ArglistContext arglist() throws RecognitionException {
@@ -3336,6 +3601,11 @@ public class xppll1Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof xppll1Listener ) ((xppll1Listener)listener).exitArglists(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof xppll1Visitor ) return ((xppll1Visitor<? extends T>)visitor).visitArglists(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 

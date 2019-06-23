@@ -6,10 +6,11 @@ all: run
 .ONESHELL:
 run:
 	@export CLASSPATH=".:../../build/antlr-4.7.2-complete.jar:$CLASSPATH"
-	@$(ANTLR4) xppll1.g4
+	@$(ANTLR4) -visitor xppll1.g4
 	@javac xppll1*.java
+	@javac Main.java
 	@read -r -p "Qual o nome do arquivo X++ que deve ser compilado? (default é ../../fontes/compileme_sem_erro.xpp) " FILENAME;
-	@$(GRUN) xppll1 xppll1 $$FILENAME -tree
+	@java Main $$FILENAME
 
 clean:
 	@rm -f *.class *.tokens *.java
