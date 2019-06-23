@@ -44,7 +44,7 @@ multiparam : ',' type IDENT brackets multiparam | ;
 
 statment : 'int' IDENT brackets multivardecl ';' | 'string' IDENT brackets multivardecl ';' | IDENT varoratrib | printstat ';' | readstat ';' | returnstat ';' | ifstat | forstat | '{' statlist '}' | 'break' ';' | ';' ;
 
-varoratrib : IDENT   multivardecl ';' | lvalue '=' atribstatb ';' ;
+varoratrib : IDENT brackets multivardecl ';' | lvalue '=' atribstatb ';' ;
 
 atribstat : IDENT lvalue '=' atribstatb ;
 
