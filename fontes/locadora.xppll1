@@ -1,0 +1,100 @@
+class locadora {
+
+	class filme {
+		int ano, identgenero, uuid;
+
+			constructor() {
+					ano = 1900;
+
+				identgenero = 1;
+
+				uuid = 1;
+
+			}
+
+			constructor(int a, int i, int u) {
+					ano = d;
+
+				identgenero = i;
+
+					uuid = u;
+
+		}
+
+
+		int inserefilme(filme k) {
+
+				if(k.estanabase)
+
+						print "Erro. Filme ja na base \n";
+
+			return 0;
+
+
+		}
+
+			int printafilme(int w) {
+
+				print "O ano do filme é: ";
+				read w.a;
+
+				print "O genero do filme é: ";
+				read w.i;
+
+				print "O identificador unico do filme é: ";
+				read w.u;
+
+			}
+
+			int start() {
+				locadora l;
+
+				int j, a, i, u;
+
+				filme w;
+
+				print "Digite ano do filme: ";
+
+				read a;
+
+				print "Digite identificador unico do filme: ";
+
+				read u;
+
+				print "Digite o id do genero do filme: ";
+
+				read i;
+
+				w = new filme (a, i, u);
+
+				l = new locadora(w);
+
+				for (j = 0; j < 10; j = j + 1) {
+					print "Digite o ano do filme: ";
+					read a;
+
+					print "Digite o genero do filme: ";
+					read i;
+
+					print "Digite o id do filme: ";
+					read u;
+
+					w = new filme (a, i, u);
+
+					z = new filme (a, i, u);
+
+					if (l.inserefilme(w) == 0)
+						print "Esse filme ja esta na base de dados\n";
+				}
+
+					if (l.inserefilme(z) == 0)
+						print "Esse filme ja esta na base de dados\n";
+
+
+				return 0;
+
+			}
+	}
+
+	}
+}
