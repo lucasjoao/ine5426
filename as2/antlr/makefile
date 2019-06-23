@@ -13,4 +13,4 @@ run:
 	@java Main $$FILENAME
 
 clean:
-	@rm -f *.class *.tokens *.java
+	@rm -f *.class *.tokens xppll1*.java
