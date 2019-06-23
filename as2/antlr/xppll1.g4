@@ -6,15 +6,15 @@ xppll1 : program ;
 
 program : classlist | ;
 
-classlist : 'class' IDENT classdecl classlistb ;
+classlist : 'class' IDENT classdecl classlistepsilon ;
 
-classlistb : classlist | ;
+classlistepsilon : classlist | ;
 
 classdecl : 'extends' IDENT classbody | classbody ;
 
-classbody : '{' classbodyb ;
+classbody : '{' classbodydentro ;
 
-classbodyb : classlist vardecls constructdecls methoddecls '}' | vardecls constructdecls methoddecls '}' ;
+classbodydentro : classlist vardecls constructdecls methoddecls '}' | vardecls constructdecls methoddecls '}' ;
 
 vardecls : vardecl ';' vardecls | ;
 
@@ -24,75 +24,75 @@ methoddecls : methoddecl methoddecls | ;
 
 type : 'int' | 'string' |  IDENT ;
 
-vardecl : type IDENT brackets multivardecl ;
+vardecl : type IDENT col vardeclm ;
 
-brackets : ('[' ']') * ;
+col : ('[' ']') * ;
 
-multivardecl : vardeclcomma multivardecl | ;
+vardeclm : virgula vardeclm | ;
 
-vardeclcomma : ',' IDENT brackets ;
+virgula : ',' IDENT col ;
 
 constructdecl : 'constructor' methodbody ;
 
-methoddecl : type brackets IDENT methodbody ;
+methoddecl : type col IDENT methodbody ;
 
 methodbody : '(' paramlist ')' statment ;
 
-paramlist : type IDENT brackets multiparam | ;
+paramlist : type IDENT col parameteres | ;
 
-multiparam : ',' type IDENT brackets multiparam | ;
+parameteres : ',' type IDENT col parameteres | ;
 
-statment : 'int' IDENT brackets multivardecl ';' | 'string' IDENT brackets multivardecl ';' | IDENT varoratrib | printstat ';' | readstat ';' | returnstat ';' | ifstat | forstat | '{' statlist '}' | 'break' ';' | ';' ;
+statment : 'int' IDENT col vardeclm ';' | 'string' IDENT col vardeclm ';' | IDENT varoratribut | printstat ';' | readstat ';' | returnstat ';' | superstat ';' | ifstat | forstat | '{' statlist '}' | 'break' ';' | ';' ;
 
-varoratrib : IDENT brackets multivardecl ';' | lvalue '=' atribstatb ';' ;
+varoratribut : IDENT col vardeclm ';' | lvalue '=' atributstatss ';' ;
 
-atribstat : IDENT lvalue '=' atribstatb ;
+atribstat : IDENT lvalue '=' atributstatss ;
 
-atribstatb : expression | alocexpression ;
+atributstatss : expression | alocexpression ;
 
 printstat : 'print' expression ;
 
 readstat : 'read' IDENT lvalue ;
 
-returnstat : 'return' returnstatb ;
+returnstat : 'return' returnstatexpress ;
 
-returnstatb : expression | ;
+returnstatexpress : expression | ;
 
 superstat : 'super' '(' arglist ')' ;
 
-ifstat : 'if' '(' expression ')' statment | 'if' '(' expression ')' statment 'else' statment ;
+ifstat : 'if' '(' expression ')' statment | 'ifelse' '(' expression ')' statment 'else' statment ;
 
-forstat : 'for' '(' insidefor ')' statment ;
+forstat : 'for' '(' dentrofor ')' statment ;
 
-insidefor : atribstat ';' insideforb | ';' insideforb ;
+dentrofor : atribstat ';' dentroforexpress | ';' dentroforexpress ;
 
-insideforb : ';' insideforc | expression ';' insideforc ;
+dentroforexpress : ';' dentroforatribs | expression ';' dentroforatribs ;
 
-insideforc : atribstat | ;
+dentroforatribs : atribstat | ;
 
-statlist : statment statlistb ;
+statlist : statment statlistas ;
 
-statlistb : statlist | ;
+statlistas : statlist | ;
 
-lvalue : '[' expression ']' lvalue | '.' IDENT lvalueb | ;
+lvalue : '[' expression ']' lvalue | '.' IDENT lvaluex | ;
 
-lvalueb : '(' arglist ')' lvalue | lvalue ;
+lvaluex : '(' arglist ')' lvalue | lvalue ;
 
-alocexpression : 'new' alocexpressionb ;
+alocexpression : 'new' alocexpressionx ;
 
-alocexpressionb : IDENT alocexpressionc | 'int' expressions | 'string' expressions ;
+alocexpressionx : IDENT alocexpressionz | 'int' expressions | 'string' expressions ;
 
-alocexpressionc : '(' arglist ')' | expressions ;
+alocexpressionz : '(' arglist ')' | expressions ;
 
-expressions : '[' expression ']' expressionsb ;
+expressions : '[' expression ']' expressionsx ;
 
-expressionsb : expressions | ;
+expressionsx : expressions | ;
 
-expression : numexpression expressionb ;
+expression : numexpression expressionz ;
 
-expressionb : '<' expressionc | '>' expressionc | '==' numexpression | '!=' numexpression | ;
+expressionz : '<' expressiony | '>' expressiony | '==' numexpression | '!=' numexpression | ;
 
-expressionc : numexpression | '=' numexpression ;
+expressiony : numexpression | '=' numexpression ;
 
 numexpression : term terms ;
 

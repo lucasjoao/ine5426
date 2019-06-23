@@ -37,7 +37,7 @@ public class xppll1BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitClasslistb(xppll1Parser.ClasslistbContext ctx) { return visitChildren(ctx); }
+	@Override public T visitClasslistepsilon(xppll1Parser.ClasslistepsilonContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -58,7 +58,7 @@ public class xppll1BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitClassbodyb(xppll1Parser.ClassbodybContext ctx) { return visitChildren(ctx); }
+	@Override public T visitClassbodydentro(xppll1Parser.ClassbodydentroContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -100,21 +100,21 @@ public class xppll1BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitBrackets(xppll1Parser.BracketsContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCol(xppll1Parser.ColContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMultivardecl(xppll1Parser.MultivardeclContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVardeclm(xppll1Parser.VardeclmContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVardeclcomma(xppll1Parser.VardeclcommaContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVirgula(xppll1Parser.VirgulaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -149,7 +149,7 @@ public class xppll1BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMultiparam(xppll1Parser.MultiparamContext ctx) { return visitChildren(ctx); }
+	@Override public T visitParameteres(xppll1Parser.ParameteresContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -163,7 +163,7 @@ public class xppll1BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVaroratrib(xppll1Parser.VaroratribContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVaroratribut(xppll1Parser.VaroratributContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -177,7 +177,7 @@ public class xppll1BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAtribstatb(xppll1Parser.AtribstatbContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAtributstatss(xppll1Parser.AtributstatssContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -205,7 +205,7 @@ public class xppll1BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitReturnstatb(xppll1Parser.ReturnstatbContext ctx) { return visitChildren(ctx); }
+	@Override public T visitReturnstatexpress(xppll1Parser.ReturnstatexpressContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -233,21 +233,21 @@ public class xppll1BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitInsidefor(xppll1Parser.InsideforContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDentrofor(xppll1Parser.DentroforContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitInsideforb(xppll1Parser.InsideforbContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDentroforexpress(xppll1Parser.DentroforexpressContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitInsideforc(xppll1Parser.InsideforcContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDentroforatribs(xppll1Parser.DentroforatribsContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -261,7 +261,7 @@ public class xppll1BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStatlistb(xppll1Parser.StatlistbContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStatlistas(xppll1Parser.StatlistasContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -275,7 +275,7 @@ public class xppll1BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLvalueb(xppll1Parser.LvaluebContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLvaluex(xppll1Parser.LvaluexContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -289,14 +289,14 @@ public class xppll1BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAlocexpressionb(xppll1Parser.AlocexpressionbContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAlocexpressionx(xppll1Parser.AlocexpressionxContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAlocexpressionc(xppll1Parser.AlocexpressioncContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAlocexpressionz(xppll1Parser.AlocexpressionzContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -310,7 +310,7 @@ public class xppll1BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpressionsb(xppll1Parser.ExpressionsbContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExpressionsx(xppll1Parser.ExpressionsxContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -324,14 +324,14 @@ public class xppll1BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpressionb(xppll1Parser.ExpressionbContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExpressionz(xppll1Parser.ExpressionzContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpressionc(xppll1Parser.ExpressioncContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExpressiony(xppll1Parser.ExpressionyContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

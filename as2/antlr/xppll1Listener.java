@@ -37,15 +37,15 @@ public interface xppll1Listener extends ParseTreeListener {
 	 */
 	void exitClasslist(xppll1Parser.ClasslistContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#classlistb}.
+	 * Enter a parse tree produced by {@link xppll1Parser#classlistepsilon}.
 	 * @param ctx the parse tree
 	 */
-	void enterClasslistb(xppll1Parser.ClasslistbContext ctx);
+	void enterClasslistepsilon(xppll1Parser.ClasslistepsilonContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#classlistb}.
+	 * Exit a parse tree produced by {@link xppll1Parser#classlistepsilon}.
 	 * @param ctx the parse tree
 	 */
-	void exitClasslistb(xppll1Parser.ClasslistbContext ctx);
+	void exitClasslistepsilon(xppll1Parser.ClasslistepsilonContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link xppll1Parser#classdecl}.
 	 * @param ctx the parse tree
@@ -67,15 +67,15 @@ public interface xppll1Listener extends ParseTreeListener {
 	 */
 	void exitClassbody(xppll1Parser.ClassbodyContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#classbodyb}.
+	 * Enter a parse tree produced by {@link xppll1Parser#classbodydentro}.
 	 * @param ctx the parse tree
 	 */
-	void enterClassbodyb(xppll1Parser.ClassbodybContext ctx);
+	void enterClassbodydentro(xppll1Parser.ClassbodydentroContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#classbodyb}.
+	 * Exit a parse tree produced by {@link xppll1Parser#classbodydentro}.
 	 * @param ctx the parse tree
 	 */
-	void exitClassbodyb(xppll1Parser.ClassbodybContext ctx);
+	void exitClassbodydentro(xppll1Parser.ClassbodydentroContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link xppll1Parser#vardecls}.
 	 * @param ctx the parse tree
@@ -127,35 +127,35 @@ public interface xppll1Listener extends ParseTreeListener {
 	 */
 	void exitVardecl(xppll1Parser.VardeclContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#brackets}.
+	 * Enter a parse tree produced by {@link xppll1Parser#col}.
 	 * @param ctx the parse tree
 	 */
-	void enterBrackets(xppll1Parser.BracketsContext ctx);
+	void enterCol(xppll1Parser.ColContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#brackets}.
+	 * Exit a parse tree produced by {@link xppll1Parser#col}.
 	 * @param ctx the parse tree
 	 */
-	void exitBrackets(xppll1Parser.BracketsContext ctx);
+	void exitCol(xppll1Parser.ColContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#multivardecl}.
+	 * Enter a parse tree produced by {@link xppll1Parser#vardeclm}.
 	 * @param ctx the parse tree
 	 */
-	void enterMultivardecl(xppll1Parser.MultivardeclContext ctx);
+	void enterVardeclm(xppll1Parser.VardeclmContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#multivardecl}.
+	 * Exit a parse tree produced by {@link xppll1Parser#vardeclm}.
 	 * @param ctx the parse tree
 	 */
-	void exitMultivardecl(xppll1Parser.MultivardeclContext ctx);
+	void exitVardeclm(xppll1Parser.VardeclmContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#vardeclcomma}.
+	 * Enter a parse tree produced by {@link xppll1Parser#virgula}.
 	 * @param ctx the parse tree
 	 */
-	void enterVardeclcomma(xppll1Parser.VardeclcommaContext ctx);
+	void enterVirgula(xppll1Parser.VirgulaContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#vardeclcomma}.
+	 * Exit a parse tree produced by {@link xppll1Parser#virgula}.
 	 * @param ctx the parse tree
 	 */
-	void exitVardeclcomma(xppll1Parser.VardeclcommaContext ctx);
+	void exitVirgula(xppll1Parser.VirgulaContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link xppll1Parser#constructdecl}.
 	 * @param ctx the parse tree
@@ -197,15 +197,15 @@ public interface xppll1Listener extends ParseTreeListener {
 	 */
 	void exitParamlist(xppll1Parser.ParamlistContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#multiparam}.
+	 * Enter a parse tree produced by {@link xppll1Parser#parameteres}.
 	 * @param ctx the parse tree
 	 */
-	void enterMultiparam(xppll1Parser.MultiparamContext ctx);
+	void enterParameteres(xppll1Parser.ParameteresContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#multiparam}.
+	 * Exit a parse tree produced by {@link xppll1Parser#parameteres}.
 	 * @param ctx the parse tree
 	 */
-	void exitMultiparam(xppll1Parser.MultiparamContext ctx);
+	void exitParameteres(xppll1Parser.ParameteresContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link xppll1Parser#statment}.
 	 * @param ctx the parse tree
@@ -217,15 +217,15 @@ public interface xppll1Listener extends ParseTreeListener {
 	 */
 	void exitStatment(xppll1Parser.StatmentContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#varoratrib}.
+	 * Enter a parse tree produced by {@link xppll1Parser#varoratribut}.
 	 * @param ctx the parse tree
 	 */
-	void enterVaroratrib(xppll1Parser.VaroratribContext ctx);
+	void enterVaroratribut(xppll1Parser.VaroratributContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#varoratrib}.
+	 * Exit a parse tree produced by {@link xppll1Parser#varoratribut}.
 	 * @param ctx the parse tree
 	 */
-	void exitVaroratrib(xppll1Parser.VaroratribContext ctx);
+	void exitVaroratribut(xppll1Parser.VaroratributContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link xppll1Parser#atribstat}.
 	 * @param ctx the parse tree
@@ -237,15 +237,15 @@ public interface xppll1Listener extends ParseTreeListener {
 	 */
 	void exitAtribstat(xppll1Parser.AtribstatContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#atribstatb}.
+	 * Enter a parse tree produced by {@link xppll1Parser#atributstatss}.
 	 * @param ctx the parse tree
 	 */
-	void enterAtribstatb(xppll1Parser.AtribstatbContext ctx);
+	void enterAtributstatss(xppll1Parser.AtributstatssContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#atribstatb}.
+	 * Exit a parse tree produced by {@link xppll1Parser#atributstatss}.
 	 * @param ctx the parse tree
 	 */
-	void exitAtribstatb(xppll1Parser.AtribstatbContext ctx);
+	void exitAtributstatss(xppll1Parser.AtributstatssContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link xppll1Parser#printstat}.
 	 * @param ctx the parse tree
@@ -277,15 +277,15 @@ public interface xppll1Listener extends ParseTreeListener {
 	 */
 	void exitReturnstat(xppll1Parser.ReturnstatContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#returnstatb}.
+	 * Enter a parse tree produced by {@link xppll1Parser#returnstatexpress}.
 	 * @param ctx the parse tree
 	 */
-	void enterReturnstatb(xppll1Parser.ReturnstatbContext ctx);
+	void enterReturnstatexpress(xppll1Parser.ReturnstatexpressContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#returnstatb}.
+	 * Exit a parse tree produced by {@link xppll1Parser#returnstatexpress}.
 	 * @param ctx the parse tree
 	 */
-	void exitReturnstatb(xppll1Parser.ReturnstatbContext ctx);
+	void exitReturnstatexpress(xppll1Parser.ReturnstatexpressContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link xppll1Parser#superstat}.
 	 * @param ctx the parse tree
@@ -317,35 +317,35 @@ public interface xppll1Listener extends ParseTreeListener {
 	 */
 	void exitForstat(xppll1Parser.ForstatContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#insidefor}.
+	 * Enter a parse tree produced by {@link xppll1Parser#dentrofor}.
 	 * @param ctx the parse tree
 	 */
-	void enterInsidefor(xppll1Parser.InsideforContext ctx);
+	void enterDentrofor(xppll1Parser.DentroforContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#insidefor}.
+	 * Exit a parse tree produced by {@link xppll1Parser#dentrofor}.
 	 * @param ctx the parse tree
 	 */
-	void exitInsidefor(xppll1Parser.InsideforContext ctx);
+	void exitDentrofor(xppll1Parser.DentroforContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#insideforb}.
+	 * Enter a parse tree produced by {@link xppll1Parser#dentroforexpress}.
 	 * @param ctx the parse tree
 	 */
-	void enterInsideforb(xppll1Parser.InsideforbContext ctx);
+	void enterDentroforexpress(xppll1Parser.DentroforexpressContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#insideforb}.
+	 * Exit a parse tree produced by {@link xppll1Parser#dentroforexpress}.
 	 * @param ctx the parse tree
 	 */
-	void exitInsideforb(xppll1Parser.InsideforbContext ctx);
+	void exitDentroforexpress(xppll1Parser.DentroforexpressContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#insideforc}.
+	 * Enter a parse tree produced by {@link xppll1Parser#dentroforatribs}.
 	 * @param ctx the parse tree
 	 */
-	void enterInsideforc(xppll1Parser.InsideforcContext ctx);
+	void enterDentroforatribs(xppll1Parser.DentroforatribsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#insideforc}.
+	 * Exit a parse tree produced by {@link xppll1Parser#dentroforatribs}.
 	 * @param ctx the parse tree
 	 */
-	void exitInsideforc(xppll1Parser.InsideforcContext ctx);
+	void exitDentroforatribs(xppll1Parser.DentroforatribsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link xppll1Parser#statlist}.
 	 * @param ctx the parse tree
@@ -357,15 +357,15 @@ public interface xppll1Listener extends ParseTreeListener {
 	 */
 	void exitStatlist(xppll1Parser.StatlistContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#statlistb}.
+	 * Enter a parse tree produced by {@link xppll1Parser#statlistas}.
 	 * @param ctx the parse tree
 	 */
-	void enterStatlistb(xppll1Parser.StatlistbContext ctx);
+	void enterStatlistas(xppll1Parser.StatlistasContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#statlistb}.
+	 * Exit a parse tree produced by {@link xppll1Parser#statlistas}.
 	 * @param ctx the parse tree
 	 */
-	void exitStatlistb(xppll1Parser.StatlistbContext ctx);
+	void exitStatlistas(xppll1Parser.StatlistasContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link xppll1Parser#lvalue}.
 	 * @param ctx the parse tree
@@ -377,15 +377,15 @@ public interface xppll1Listener extends ParseTreeListener {
 	 */
 	void exitLvalue(xppll1Parser.LvalueContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#lvalueb}.
+	 * Enter a parse tree produced by {@link xppll1Parser#lvaluex}.
 	 * @param ctx the parse tree
 	 */
-	void enterLvalueb(xppll1Parser.LvaluebContext ctx);
+	void enterLvaluex(xppll1Parser.LvaluexContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#lvalueb}.
+	 * Exit a parse tree produced by {@link xppll1Parser#lvaluex}.
 	 * @param ctx the parse tree
 	 */
-	void exitLvalueb(xppll1Parser.LvaluebContext ctx);
+	void exitLvaluex(xppll1Parser.LvaluexContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link xppll1Parser#alocexpression}.
 	 * @param ctx the parse tree
@@ -397,25 +397,25 @@ public interface xppll1Listener extends ParseTreeListener {
 	 */
 	void exitAlocexpression(xppll1Parser.AlocexpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#alocexpressionb}.
+	 * Enter a parse tree produced by {@link xppll1Parser#alocexpressionx}.
 	 * @param ctx the parse tree
 	 */
-	void enterAlocexpressionb(xppll1Parser.AlocexpressionbContext ctx);
+	void enterAlocexpressionx(xppll1Parser.AlocexpressionxContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#alocexpressionb}.
+	 * Exit a parse tree produced by {@link xppll1Parser#alocexpressionx}.
 	 * @param ctx the parse tree
 	 */
-	void exitAlocexpressionb(xppll1Parser.AlocexpressionbContext ctx);
+	void exitAlocexpressionx(xppll1Parser.AlocexpressionxContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#alocexpressionc}.
+	 * Enter a parse tree produced by {@link xppll1Parser#alocexpressionz}.
 	 * @param ctx the parse tree
 	 */
-	void enterAlocexpressionc(xppll1Parser.AlocexpressioncContext ctx);
+	void enterAlocexpressionz(xppll1Parser.AlocexpressionzContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#alocexpressionc}.
+	 * Exit a parse tree produced by {@link xppll1Parser#alocexpressionz}.
 	 * @param ctx the parse tree
 	 */
-	void exitAlocexpressionc(xppll1Parser.AlocexpressioncContext ctx);
+	void exitAlocexpressionz(xppll1Parser.AlocexpressionzContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link xppll1Parser#expressions}.
 	 * @param ctx the parse tree
@@ -427,15 +427,15 @@ public interface xppll1Listener extends ParseTreeListener {
 	 */
 	void exitExpressions(xppll1Parser.ExpressionsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#expressionsb}.
+	 * Enter a parse tree produced by {@link xppll1Parser#expressionsx}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpressionsb(xppll1Parser.ExpressionsbContext ctx);
+	void enterExpressionsx(xppll1Parser.ExpressionsxContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#expressionsb}.
+	 * Exit a parse tree produced by {@link xppll1Parser#expressionsx}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpressionsb(xppll1Parser.ExpressionsbContext ctx);
+	void exitExpressionsx(xppll1Parser.ExpressionsxContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link xppll1Parser#expression}.
 	 * @param ctx the parse tree
@@ -447,25 +447,25 @@ public interface xppll1Listener extends ParseTreeListener {
 	 */
 	void exitExpression(xppll1Parser.ExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#expressionb}.
+	 * Enter a parse tree produced by {@link xppll1Parser#expressionz}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpressionb(xppll1Parser.ExpressionbContext ctx);
+	void enterExpressionz(xppll1Parser.ExpressionzContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#expressionb}.
+	 * Exit a parse tree produced by {@link xppll1Parser#expressionz}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpressionb(xppll1Parser.ExpressionbContext ctx);
+	void exitExpressionz(xppll1Parser.ExpressionzContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link xppll1Parser#expressionc}.
+	 * Enter a parse tree produced by {@link xppll1Parser#expressiony}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpressionc(xppll1Parser.ExpressioncContext ctx);
+	void enterExpressiony(xppll1Parser.ExpressionyContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link xppll1Parser#expressionc}.
+	 * Exit a parse tree produced by {@link xppll1Parser#expressiony}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpressionc(xppll1Parser.ExpressioncContext ctx);
+	void exitExpressiony(xppll1Parser.ExpressionyContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link xppll1Parser#numexpression}.
 	 * @param ctx the parse tree

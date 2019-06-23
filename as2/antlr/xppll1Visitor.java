@@ -28,11 +28,11 @@ public interface xppll1Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitClasslist(xppll1Parser.ClasslistContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#classlistb}.
+	 * Visit a parse tree produced by {@link xppll1Parser#classlistepsilon}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitClasslistb(xppll1Parser.ClasslistbContext ctx);
+	T visitClasslistepsilon(xppll1Parser.ClasslistepsilonContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link xppll1Parser#classdecl}.
 	 * @param ctx the parse tree
@@ -46,11 +46,11 @@ public interface xppll1Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitClassbody(xppll1Parser.ClassbodyContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#classbodyb}.
+	 * Visit a parse tree produced by {@link xppll1Parser#classbodydentro}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitClassbodyb(xppll1Parser.ClassbodybContext ctx);
+	T visitClassbodydentro(xppll1Parser.ClassbodydentroContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link xppll1Parser#vardecls}.
 	 * @param ctx the parse tree
@@ -82,23 +82,23 @@ public interface xppll1Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVardecl(xppll1Parser.VardeclContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#brackets}.
+	 * Visit a parse tree produced by {@link xppll1Parser#col}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitBrackets(xppll1Parser.BracketsContext ctx);
+	T visitCol(xppll1Parser.ColContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#multivardecl}.
+	 * Visit a parse tree produced by {@link xppll1Parser#vardeclm}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMultivardecl(xppll1Parser.MultivardeclContext ctx);
+	T visitVardeclm(xppll1Parser.VardeclmContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#vardeclcomma}.
+	 * Visit a parse tree produced by {@link xppll1Parser#virgula}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVardeclcomma(xppll1Parser.VardeclcommaContext ctx);
+	T visitVirgula(xppll1Parser.VirgulaContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link xppll1Parser#constructdecl}.
 	 * @param ctx the parse tree
@@ -124,11 +124,11 @@ public interface xppll1Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParamlist(xppll1Parser.ParamlistContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#multiparam}.
+	 * Visit a parse tree produced by {@link xppll1Parser#parameteres}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMultiparam(xppll1Parser.MultiparamContext ctx);
+	T visitParameteres(xppll1Parser.ParameteresContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link xppll1Parser#statment}.
 	 * @param ctx the parse tree
@@ -136,11 +136,11 @@ public interface xppll1Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStatment(xppll1Parser.StatmentContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#varoratrib}.
+	 * Visit a parse tree produced by {@link xppll1Parser#varoratribut}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVaroratrib(xppll1Parser.VaroratribContext ctx);
+	T visitVaroratribut(xppll1Parser.VaroratributContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link xppll1Parser#atribstat}.
 	 * @param ctx the parse tree
@@ -148,11 +148,11 @@ public interface xppll1Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAtribstat(xppll1Parser.AtribstatContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#atribstatb}.
+	 * Visit a parse tree produced by {@link xppll1Parser#atributstatss}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAtribstatb(xppll1Parser.AtribstatbContext ctx);
+	T visitAtributstatss(xppll1Parser.AtributstatssContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link xppll1Parser#printstat}.
 	 * @param ctx the parse tree
@@ -172,11 +172,11 @@ public interface xppll1Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitReturnstat(xppll1Parser.ReturnstatContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#returnstatb}.
+	 * Visit a parse tree produced by {@link xppll1Parser#returnstatexpress}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitReturnstatb(xppll1Parser.ReturnstatbContext ctx);
+	T visitReturnstatexpress(xppll1Parser.ReturnstatexpressContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link xppll1Parser#superstat}.
 	 * @param ctx the parse tree
@@ -196,23 +196,23 @@ public interface xppll1Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitForstat(xppll1Parser.ForstatContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#insidefor}.
+	 * Visit a parse tree produced by {@link xppll1Parser#dentrofor}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInsidefor(xppll1Parser.InsideforContext ctx);
+	T visitDentrofor(xppll1Parser.DentroforContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#insideforb}.
+	 * Visit a parse tree produced by {@link xppll1Parser#dentroforexpress}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInsideforb(xppll1Parser.InsideforbContext ctx);
+	T visitDentroforexpress(xppll1Parser.DentroforexpressContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#insideforc}.
+	 * Visit a parse tree produced by {@link xppll1Parser#dentroforatribs}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInsideforc(xppll1Parser.InsideforcContext ctx);
+	T visitDentroforatribs(xppll1Parser.DentroforatribsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link xppll1Parser#statlist}.
 	 * @param ctx the parse tree
@@ -220,11 +220,11 @@ public interface xppll1Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStatlist(xppll1Parser.StatlistContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#statlistb}.
+	 * Visit a parse tree produced by {@link xppll1Parser#statlistas}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStatlistb(xppll1Parser.StatlistbContext ctx);
+	T visitStatlistas(xppll1Parser.StatlistasContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link xppll1Parser#lvalue}.
 	 * @param ctx the parse tree
@@ -232,11 +232,11 @@ public interface xppll1Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLvalue(xppll1Parser.LvalueContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#lvalueb}.
+	 * Visit a parse tree produced by {@link xppll1Parser#lvaluex}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLvalueb(xppll1Parser.LvaluebContext ctx);
+	T visitLvaluex(xppll1Parser.LvaluexContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link xppll1Parser#alocexpression}.
 	 * @param ctx the parse tree
@@ -244,17 +244,17 @@ public interface xppll1Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAlocexpression(xppll1Parser.AlocexpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#alocexpressionb}.
+	 * Visit a parse tree produced by {@link xppll1Parser#alocexpressionx}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAlocexpressionb(xppll1Parser.AlocexpressionbContext ctx);
+	T visitAlocexpressionx(xppll1Parser.AlocexpressionxContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#alocexpressionc}.
+	 * Visit a parse tree produced by {@link xppll1Parser#alocexpressionz}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAlocexpressionc(xppll1Parser.AlocexpressioncContext ctx);
+	T visitAlocexpressionz(xppll1Parser.AlocexpressionzContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link xppll1Parser#expressions}.
 	 * @param ctx the parse tree
@@ -262,11 +262,11 @@ public interface xppll1Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpressions(xppll1Parser.ExpressionsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#expressionsb}.
+	 * Visit a parse tree produced by {@link xppll1Parser#expressionsx}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpressionsb(xppll1Parser.ExpressionsbContext ctx);
+	T visitExpressionsx(xppll1Parser.ExpressionsxContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link xppll1Parser#expression}.
 	 * @param ctx the parse tree
@@ -274,17 +274,17 @@ public interface xppll1Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpression(xppll1Parser.ExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#expressionb}.
+	 * Visit a parse tree produced by {@link xppll1Parser#expressionz}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpressionb(xppll1Parser.ExpressionbContext ctx);
+	T visitExpressionz(xppll1Parser.ExpressionzContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link xppll1Parser#expressionc}.
+	 * Visit a parse tree produced by {@link xppll1Parser#expressiony}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpressionc(xppll1Parser.ExpressioncContext ctx);
+	T visitExpressiony(xppll1Parser.ExpressionyContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link xppll1Parser#numexpression}.
 	 * @param ctx the parse tree
