@@ -1,9 +1,15 @@
+ANTLR4=java -jar ../../build/antlr-4.7.2-complete.jar
+GRUN=java org.antlr.v4.gui.TestRig
+
 all: run
 
 .ONESHELL:
 run:
-	@read -r -p "Qual o nome do arquivo X++ que deve ser compilado? " FILENAME;
-	java -jar target/compiladorxpp-1.0.jar -i $$FILENAME
+	@export CLASSPATH=".:../../build/antlr-4.7.2-complete.jar:$CLASSPATH"
+	@$(ANTLR4) xppll1.g4
+	@javac xppll1*.java
+	@read -r -p "Qual o nome do arquivo X++ que deve ser compilado? (default é ../../fontes/compileme_sem_erro.xpp) " FILENAME;
+	@$(GRUN) xppll1 xppll1 $$FILENAME -tree
 
-build:
-	@mvn clean install
+clean:
+	@rm -f *.class *.tokens *.java
