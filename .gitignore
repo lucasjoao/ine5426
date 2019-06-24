@@ -12,6 +12,8 @@
 
 # Package Files #
 *.jar
+# to commit antlr jar
+!antlr*.jar
 *.war
 *.ear
 *.zip
@@ -49,7 +51,7 @@ local.properties
 # CDT-specific (C/C++ Development Tooling)
 .cproject
 
-# CDT- autotools 
+# CDT- autotools
 .autotools
 
 # Java annotation processor (APT)
