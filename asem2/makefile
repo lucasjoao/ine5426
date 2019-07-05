@@ -35,6 +35,19 @@ test:
 	@echo "-----------------------"
 	@cat ../fontes/to_test/break05.xpp
 	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/break05.xpp
+	@echo "TESTES VERIFICAÇÃO NOME"
+	@echo "-----------------------"
+	@cat ../fontes/to_test/name00.xpp
+	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/name00.xpp
+	@echo "-----------------------"
+	@cat ../fontes/to_test/name01.xpp
+	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/name01.xpp
+	@echo "-----------------------"
+	@cat ../fontes/to_test/name02.xpp
+	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/name02.xpp
+	@echo "-----------------------"
+	@cat ../fontes/to_test/name03.xpp
+	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/name03.xpp
 
 build:
 	@mvn clean install
