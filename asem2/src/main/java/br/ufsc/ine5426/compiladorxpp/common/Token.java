@@ -11,6 +11,7 @@
 package br.ufsc.ine5426.compiladorxpp.common;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,6 +23,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @AllArgsConstructor
+@EqualsAndHashCode
 @ToString(onlyExplicitlyIncluded = true)
 public class Token {
 
@@ -44,4 +46,9 @@ public class Token {
 	private IdentType identType;
 
 	private Scope scope;
+
+	public boolean isDuplicate(Token other) {
+		return this.type.equals(other.getType()) && this.name.equals(other.getName())
+				&& this.identType.equals(other.getIdentType()) && this.scope.equals(other.getScope());
+	}
 }

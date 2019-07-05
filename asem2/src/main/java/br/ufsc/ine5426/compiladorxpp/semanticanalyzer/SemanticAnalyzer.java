@@ -76,6 +76,29 @@ public class SemanticAnalyzer {
 	}
 
 	private boolean checkVariableScope() {
+		boolean alright = true;
+		for (int i = 0; i < this.tokens.size(); i++) {
+			if (this.tokens.get(i).getType().equals(TokenType.IDENT)) {
+				alright = alright && this.isGoodVariableScope(this.tokens.get(i));
+			}
+
+			if (!alright) {
+				break;
+			}
+		}
+		return alright;
+	}
+
+	private boolean isGoodVariableScope(Token search) {
+		for (Token token : this.tokens) {
+			if (token.equals(search)) {
+				continue;
+			}
+			if (token.isDuplicate(search)) {
+				System.out.println("Erro no isGoodVariableScope"); // XXX: add result
+				return false;
+			}
+		}
 		return true;
 	}
 
@@ -89,6 +112,7 @@ public class SemanticAnalyzer {
 			}
 
 			if (!alright) {
+				System.out.println("Erro no checkBreak"); // XXX: add result
 				break;
 			}
 		}
