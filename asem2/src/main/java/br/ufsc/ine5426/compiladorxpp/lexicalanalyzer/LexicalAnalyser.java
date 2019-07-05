@@ -31,6 +31,7 @@ import br.ufsc.ine5426.compiladorxpp.common.Constants;
 import br.ufsc.ine5426.compiladorxpp.common.IdentType;
 import br.ufsc.ine5426.compiladorxpp.common.Scope;
 import br.ufsc.ine5426.compiladorxpp.common.ScopeType;
+import br.ufsc.ine5426.compiladorxpp.common.SymbolTableKey;
 import br.ufsc.ine5426.compiladorxpp.common.Token;
 import br.ufsc.ine5426.compiladorxpp.common.TokenType;
 import br.ufsc.ine5426.compiladorxpp.common.TreeNode;
@@ -66,12 +67,12 @@ public class LexicalAnalyser {
 	/**
 	 * Mapa que representa a tabela de símbolos alimentada durante a análise léxica.
 	 */
-	private Map<String, Token> table = new HashMap<>();
+	private Map<SymbolTableKey, Token> table = new HashMap<>();
 
 	private int iterator;
 
 	private int scopeCounter;
-	private TreeNode scope;
+	private TreeNode treeScope;
 
 	private List<String> lines;
 
@@ -105,7 +106,7 @@ public class LexicalAnalyser {
 	public boolean compile(String path) {
 		this.iterator = 0;
 		this.scopeCounter = 0;
-		this.scope = new TreeNode(new Scope(this.scopeCounter, ScopeType.NONE));
+		this.treeScope = new TreeNode(new Scope(this.scopeCounter, ScopeType.NONE));
 
 		try {
 			this.lines = Files.readAllLines(Paths.get(path), Charset.defaultCharset());
@@ -184,7 +185,7 @@ public class LexicalAnalyser {
 		case 5:
 		case 6:
 		case 8:
-			return new Token(TokenType.RELOP, lexeme, line, column, IdentType.NOT_IDENT);
+			return new Token(TokenType.RELOP, lexeme, line, column, IdentType.NOT_IDENT, this.treeScope.getScope());
 		case 9:
 		case 11:
 		case 21:
@@ -198,29 +199,32 @@ public class LexicalAnalyser {
 					scopeType = ScopeType.IF;
 				}
 				Scope newScope = new Scope(++this.scopeCounter, scopeType);
-				this.scope = this.scope.addChild(new TreeNode(newScope));
+				this.treeScope = this.treeScope.addChild(new TreeNode(newScope));
 			}
-			return new Token(TokenType.BLOCK_OPEN, lexeme, line, column, IdentType.NOT_IDENT);
+			return new Token(TokenType.BLOCK_OPEN, lexeme, line, column, IdentType.NOT_IDENT,
+					this.treeScope.getScope());
 		case 10:
 		case 12:
 		case 22:
 			if ("}".equals(lexeme)) {
-				this.scope = this.scope.getParent();
+				this.treeScope = this.treeScope.getParent();
 			}
-			return new Token(TokenType.BLOCK_CLOSE, lexeme, line, column, IdentType.NOT_IDENT);
+			return new Token(TokenType.BLOCK_CLOSE, lexeme, line, column, IdentType.NOT_IDENT,
+					this.treeScope.getScope());
 		case 13:
 		case 14:
-			return new Token(TokenType.DELIMITER, lexeme, line, column, IdentType.NOT_IDENT);
+			return new Token(TokenType.DELIMITER, lexeme, line, column, IdentType.NOT_IDENT, this.treeScope.getScope());
 		case 19:
-			return new Token(TokenType.POINT, lexeme, line, column, IdentType.NOT_IDENT);
+			return new Token(TokenType.POINT, lexeme, line, column, IdentType.NOT_IDENT, this.treeScope.getScope());
 		case 15:
 		case 16:
 		case 17:
 		case 18:
 		case 20:
-			return new Token(TokenType.AROP, lexeme, line, column, IdentType.NOT_IDENT);
+			return new Token(TokenType.AROP, lexeme, line, column, IdentType.NOT_IDENT, this.treeScope.getScope());
 		case 24:
-			return new Token(TokenType.INT_CONSTANT, lexeme, line, column, IdentType.NOT_IDENT);
+			return new Token(TokenType.INT_CONSTANT, lexeme, line, column, IdentType.NOT_IDENT,
+					this.treeScope.getScope());
 		case 25:
 			TokenType tokenType;
 			IdentType identType = IdentType.NOT_IDENT;
@@ -232,8 +236,9 @@ public class LexicalAnalyser {
 				if (this.tokens.isEmpty()) {
 					System.out.println("Algo de muito estranho aconteceu, debugar!");
 				} else {
-					if (this.table.containsKey(lexeme)) {
-						identType = this.table.get(lexeme).getIdentType();
+					SymbolTableKey key = new SymbolTableKey(this.treeScope.getScope(), lexeme);
+					if (this.table.containsKey(key)) {
+						identType = this.table.get(key).getIdentType();
 					} else {
 						String lastTokenName = this.tokens.get(this.tokens.size() - 1).getName();
 						if (Constants.STRING.equals(lastTokenName)) {
@@ -246,9 +251,10 @@ public class LexicalAnalyser {
 				}
 			}
 
-			return new Token(tokenType, lexeme, line, column, identType);
+			return new Token(tokenType, lexeme, line, column, identType, this.treeScope.getScope());
 		case 26:
-			return new Token(TokenType.STRING_CONSTANT, lexeme, line, column, IdentType.NOT_IDENT);
+			return new Token(TokenType.STRING_CONSTANT, lexeme, line, column, IdentType.NOT_IDENT,
+					this.treeScope.getScope());
 		}
 		return null;
 	}
@@ -262,9 +268,12 @@ public class LexicalAnalyser {
 	private void addInSymbolTable(String lexeme, Token token) {
 		// lexema pode vir com espaço no começo
 		lexeme = lexeme.trim();
+
+		SymbolTableKey key = new SymbolTableKey(this.treeScope.getScope(), lexeme);
+
 		// só adiciona na TS se o lexema não estiver lá
-		if (!this.table.containsKey(lexeme)) {
-			this.table.put(lexeme, token);
+		if (!this.table.containsKey(key)) {
+			this.table.put(key, token);
 		}
 	}
 

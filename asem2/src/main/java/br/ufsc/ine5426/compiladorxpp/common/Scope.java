@@ -1,5 +1,7 @@
 package br.ufsc.ine5426.compiladorxpp.common;
 
+import java.util.Objects;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -11,15 +13,23 @@ public class Scope {
 	private ScopeType type;
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(this.id);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}
-		if (obj instanceof Scope) {
-			Scope scope = (Scope) obj;
-			return this.id == scope.getId();
+		if (obj == null) {
+			return false;
 		}
-		return false;
+		if (!(obj instanceof Scope)) {
+			return false;
+		}
+		Scope other = (Scope) obj;
+		return this.id == other.id;
 	}
 
 }

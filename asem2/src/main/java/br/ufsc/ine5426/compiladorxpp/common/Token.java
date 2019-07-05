@@ -42,4 +42,6 @@ public class Token {
 
 	@ToString.Include
 	private IdentType identType;
+
+	private Scope scope;
 }
