@@ -1,0 +1,7 @@
+for () {
+	int a;
+}
+
+if () {
+	break;
+}

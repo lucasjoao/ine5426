@@ -7,6 +7,7 @@ run:
 
 test:
 	@echo "TESTES VERIFICAÇÃO TIPO"
+	@echo "-----------------------"
 	@cat ../fontes/to_test/tipo00.xpp
 	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/tipo00.xpp
 	@echo "-----------------------"
@@ -15,6 +16,25 @@ test:
 	@echo "-----------------------"
 	@cat ../fontes/to_test/tipo02.xpp
 	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/tipo02.xpp
+	@echo "TESTES VERIFICAÇÃO BREAK"
+	@echo "-----------------------"
+	@cat ../fontes/to_test/break00.xpp
+	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/break00.xpp
+	@echo "-----------------------"
+	@cat ../fontes/to_test/break01.xpp
+	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/break01.xpp
+	@echo "-----------------------"
+	@cat ../fontes/to_test/break02.xpp
+	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/break02.xpp
+	@echo "-----------------------"
+	@cat ../fontes/to_test/break03.xpp
+	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/break03.xpp
+	@echo "-----------------------"
+	@cat ../fontes/to_test/break04.xpp
+	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/break04.xpp
+	@echo "-----------------------"
+	@cat ../fontes/to_test/break05.xpp
+	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/break05.xpp
 
 build:
 	@mvn clean install
