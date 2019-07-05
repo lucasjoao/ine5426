@@ -90,16 +90,26 @@ public class SemanticAnalyzer {
 	}
 
 	private boolean isGoodVariableScope(Token search) {
+		Token lastSeen = search;
+		// posso pular porque sei que vou receber o primeiro ident não visto aqui
+		boolean skipLine = true;
 		for (Token token : this.tokens) {
-			if (token.equals(search)) {
+			if (token.equals(search) || skipLine) {
+				skipLine = false;
 				continue;
 			}
-			if (token.isDuplicate(search)) {
+			if (token.isDuplicate(search) && this.isLastSeenThatWillGenerateBadResult(lastSeen)) {
 				System.out.println("Erro no isGoodVariableScope"); // XXX: add result
 				return false;
 			}
+			lastSeen = token;
 		}
 		return true;
+	}
+
+	private boolean isLastSeenThatWillGenerateBadResult(Token lastSeen) {
+		return lastSeen.getType().equals(TokenType.PR)
+				&& (lastSeen.getName().equals(Constants.INT) || lastSeen.getName().equals(Constants.STRING));
 	}
 
 	private boolean checkBreak() {
