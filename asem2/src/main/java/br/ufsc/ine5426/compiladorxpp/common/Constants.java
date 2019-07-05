@@ -9,6 +9,9 @@ public class Constants {
 	public static final Symbol CFG_EPSILON = new Symbol('&');
 	public static final Symbol CFG_EMPTY_STACK = new Symbol('$');
 
+	public static final String STRING = "string";
+	public static final String INT = "int";
+
 	/**
 	 * Valor retirado do autômato desenvolvido pela equipe. Representa o estado
 	 * especial de retração.

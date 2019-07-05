@@ -27,6 +27,8 @@ import java.util.Set;
 
 import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
 import br.ufsc.ine5426.compiladorxpp.automata.State;
+import br.ufsc.ine5426.compiladorxpp.common.Constants;
+import br.ufsc.ine5426.compiladorxpp.common.IdentType;
 import lombok.Getter;
 
 /**
@@ -43,8 +45,8 @@ public class LexicalAnalyser {
 	 * Conjunto de palavras reservadas que foram retiradas da gramática fornecida
 	 * pelo professor.
 	 */
-	private Set<String> reservedWords = new HashSet<>(Arrays.asList("class", "extends", "int", "string", "constructor",
-			"break", "print", "read", "return", "super", "if", "else", "for", "new", "null"));
+	private Set<String> reservedWords = new HashSet<>(Arrays.asList("class", "extends", Constants.INT, Constants.STRING,
+			"constructor", "break", "print", "read", "return", "super", "if", "else", "for", "new", "null"));
 	/**
 	 * Lista com os tokens encontrados durante o processo de compilação.
 	 */
@@ -167,33 +169,51 @@ public class LexicalAnalyser {
 		case 5:
 		case 6:
 		case 8:
-			return new Token(TokenType.RELOP, lexeme, line, column);
+			return new Token(TokenType.RELOP, lexeme, line, column, IdentType.NOT_IDENT);
 		case 9:
 		case 11:
 		case 21:
-			return new Token(TokenType.BLOCK_OPEN, lexeme, line, column);
+			return new Token(TokenType.BLOCK_OPEN, lexeme, line, column, IdentType.NOT_IDENT);
 		case 10:
 		case 12:
 		case 22:
-			return new Token(TokenType.BLOCK_CLOSE, lexeme, line, column);
+			return new Token(TokenType.BLOCK_CLOSE, lexeme, line, column, IdentType.NOT_IDENT);
 		case 13:
 		case 14:
-			return new Token(TokenType.DELIMITER, lexeme, line, column);
+			return new Token(TokenType.DELIMITER, lexeme, line, column, IdentType.NOT_IDENT);
 		case 19:
-			return new Token(TokenType.POINT, lexeme, line, column);
+			return new Token(TokenType.POINT, lexeme, line, column, IdentType.NOT_IDENT);
 		case 15:
 		case 16:
 		case 17:
 		case 18:
 		case 20:
-			return new Token(TokenType.AROP, lexeme, line, column);
+			return new Token(TokenType.AROP, lexeme, line, column, IdentType.NOT_IDENT);
 		case 24:
-			return new Token(TokenType.INT_CONSTANT, lexeme, line, column);
+			return new Token(TokenType.INT_CONSTANT, lexeme, line, column, IdentType.NOT_IDENT);
 		case 25:
-			return new Token(this.reservedWords.contains(lexeme) ? TokenType.PR : TokenType.IDENT, lexeme, line,
-					column);
+			TokenType tokenType;
+			IdentType identType = IdentType.NOT_IDENT;
+			if (this.reservedWords.contains(lexeme)) {
+				tokenType = TokenType.PR;
+			} else {
+				tokenType = TokenType.IDENT;
+
+				if (this.tokens.isEmpty()) {
+					System.out.println("Algo de muito estranho aconteceu, debugar!");
+				} else {
+					String lastTokenName = this.tokens.get(this.tokens.size() - 1).getName();
+					if (Constants.STRING.equals(lastTokenName)) {
+						identType = IdentType.STRING;
+					} else if (Constants.INT.equals(lastTokenName)) {
+						identType = IdentType.INT;
+					}
+				}
+			}
+
+			return new Token(tokenType, lexeme, line, column, identType);
 		case 26:
-			return new Token(TokenType.STRING_CONSTANT, lexeme, line, column);
+			return new Token(TokenType.STRING_CONSTANT, lexeme, line, column, IdentType.NOT_IDENT);
 		}
 		return null;
 	}
@@ -229,7 +249,7 @@ public class LexicalAnalyser {
 	 * Printa no console a tabela de símbolos.
 	 */
 	public void printSymbolTable() {
-		this.table.forEach((key, value) -> System.out.println(key + " - " + value.getType()));
+		this.table.forEach((key, value) -> System.out.println(key + " - " + value));
 	}
 
 	/**

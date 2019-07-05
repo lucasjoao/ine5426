@@ -10,6 +10,7 @@
 
 package br.ufsc.ine5426.compiladorxpp.lexicalanalyzer;
 
+import br.ufsc.ine5426.compiladorxpp.common.IdentType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -39,4 +40,7 @@ public class Token {
 	 * Coluna em que o começo do token foi encontrado.
 	 */
 	private int column;
+
+	@ToString.Include
+	private IdentType identType;
 }
