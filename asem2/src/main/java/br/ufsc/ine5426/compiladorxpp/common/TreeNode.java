@@ -8,18 +8,18 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TreeNode<T> {
+public class TreeNode {
 
-	private T data;
-	private TreeNode<T> parent;
-	private List<TreeNode<T>> children;
+	private Scope scope;
+	private TreeNode parent;
+	private List<TreeNode> children;
 
-	public TreeNode(T data) {
-		this.data = data;
+	public TreeNode(Scope scope) {
+		this.scope = scope;
 		this.children = new ArrayList<>();
 	}
 
-	public TreeNode<T> addChild(TreeNode<T> child) {
+	public TreeNode addChild(TreeNode child) {
 		child.setParent(this);
 		this.children.add(child);
 		return child;

@@ -11,6 +11,10 @@ public class Constants {
 
 	public static final String STRING = "string";
 	public static final String INT = "int";
+	public static final String IF = "if";
+	public static final String ELSE = "else";
+	public static final String IFELSE = "ifelse";
+	public static final String FOR = "for";
 
 	/**
 	 * Valor retirado do autômato desenvolvido pela equipe. Representa o estado

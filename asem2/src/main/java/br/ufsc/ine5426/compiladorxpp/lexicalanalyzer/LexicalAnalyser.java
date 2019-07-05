@@ -29,8 +29,11 @@ import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
 import br.ufsc.ine5426.compiladorxpp.automata.State;
 import br.ufsc.ine5426.compiladorxpp.common.Constants;
 import br.ufsc.ine5426.compiladorxpp.common.IdentType;
+import br.ufsc.ine5426.compiladorxpp.common.Scope;
+import br.ufsc.ine5426.compiladorxpp.common.ScopeType;
 import br.ufsc.ine5426.compiladorxpp.common.Token;
 import br.ufsc.ine5426.compiladorxpp.common.TokenType;
+import br.ufsc.ine5426.compiladorxpp.common.TreeNode;
 import lombok.Getter;
 
 /**
@@ -47,8 +50,9 @@ public class LexicalAnalyser {
 	 * Conjunto de palavras reservadas que foram retiradas da gramática fornecida
 	 * pelo professor.
 	 */
-	private Set<String> reservedWords = new HashSet<>(Arrays.asList("class", "extends", Constants.INT, Constants.STRING,
-			"constructor", "break", "print", "read", "return", "super", "if", "else", "for", "new", "null"));
+	private Set<String> reservedWords = new HashSet<>(
+			Arrays.asList("class", "extends", Constants.INT, Constants.STRING, "constructor", "break", "print", "read",
+					"return", "super", Constants.IF, Constants.ELSE, Constants.IFELSE, Constants.FOR, "new", "null"));
 	/**
 	 * Lista com os tokens encontrados durante o processo de compilação.
 	 */
@@ -65,6 +69,11 @@ public class LexicalAnalyser {
 	private Map<String, Token> table = new HashMap<>();
 
 	private int iterator;
+
+	private int scopeCounter;
+	private TreeNode scope;
+
+	private List<String> lines;
 
 	/**
 	 * Construtor que recebe o autômato finito.
@@ -95,10 +104,13 @@ public class LexicalAnalyser {
 	 */
 	public boolean compile(String path) {
 		this.iterator = 0;
+		this.scopeCounter = 0;
+		this.scope = new TreeNode(new Scope(this.scopeCounter, ScopeType.NONE));
+
 		try {
-			List<String> lines = Files.readAllLines(Paths.get(path), Charset.defaultCharset());
+			this.lines = Files.readAllLines(Paths.get(path), Charset.defaultCharset());
 			int lineNumber = 1;
-			for (String line : lines) {
+			for (String line : this.lines) {
 				this.baseAutomata.resetAutomata();
 				int startOfLexeme = 0;
 				for (int endOfLexeme = 0; endOfLexeme < line.length(); endOfLexeme++) {
@@ -176,10 +188,25 @@ public class LexicalAnalyser {
 		case 9:
 		case 11:
 		case 21:
+			if ("{".equals(lexeme)) {
+				ScopeType scopeType = ScopeType.NONE;
+				String fileLine = this.lines.get(line - 1);
+				if (fileLine.contains(Constants.FOR)) {
+					scopeType = ScopeType.FOR;
+				} else if (fileLine.contains(Constants.IF) || fileLine.contains(Constants.IFELSE)
+						|| fileLine.contains(Constants.ELSE)) {
+					scopeType = ScopeType.IF;
+				}
+				Scope newScope = new Scope(++this.scopeCounter, scopeType);
+				this.scope = this.scope.addChild(new TreeNode(newScope));
+			}
 			return new Token(TokenType.BLOCK_OPEN, lexeme, line, column, IdentType.NOT_IDENT);
 		case 10:
 		case 12:
 		case 22:
+			if ("}".equals(lexeme)) {
+				this.scope = this.scope.getParent();
+			}
 			return new Token(TokenType.BLOCK_CLOSE, lexeme, line, column, IdentType.NOT_IDENT);
 		case 13:
 		case 14:
