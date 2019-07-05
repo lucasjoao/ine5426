@@ -2,9 +2,13 @@ package br.ufsc.ine5426.compiladorxpp.semanticanalyzer;
 
 import java.util.List;
 
+import br.ufsc.ine5426.compiladorxpp.common.Constants;
 import br.ufsc.ine5426.compiladorxpp.common.IdentType;
+import br.ufsc.ine5426.compiladorxpp.common.Scope;
+import br.ufsc.ine5426.compiladorxpp.common.ScopeType;
 import br.ufsc.ine5426.compiladorxpp.common.Token;
 import br.ufsc.ine5426.compiladorxpp.common.TokenType;
+import br.ufsc.ine5426.compiladorxpp.common.TreeNode;
 import br.ufsc.ine5426.compiladorxpp.syntacticanalyzer.LL1;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,19 +19,19 @@ import lombok.Setter;
 public class SemanticAnalyzer {
 
 	private LL1 ll1;
-
 	private String result;
-
 	private List<Token> tokens;
+	private TreeNode treeScope;
 
 	public SemanticAnalyzer(LL1 ll1) {
 		this.ll1 = ll1;
-		this.tokens = this.ll1.getLexicalAnalyser().getTokens();
 	}
 
 	public boolean compile(String path) {
 		if (this.ll1.compile(path)) {
 			// TODO: add mensagens
+			this.tokens = this.ll1.getLexicalAnalyser().getTokens();
+			this.treeScope = this.ll1.getLexicalAnalyser().getTreeScope();
 			return this.checkType() && this.checkVariableScope() && this.checkBreak();
 		} else {
 			// TODO: add mensagens
@@ -76,7 +80,26 @@ public class SemanticAnalyzer {
 	}
 
 	private boolean checkBreak() {
-		return true;
+		boolean alright = true;
+		for (int i = 0; i < this.tokens.size(); i++) {
+			if (this.tokens.get(i).getName().equals(Constants.BREAK)) {
+				Scope breakScope = this.tokens.get(i).getScope();
+				TreeNode tree = this.treeScope.findByScope(breakScope);
+				alright = alright && this.isGoodTreeNodeForBreak(tree);
+			}
+
+			if (!alright) {
+				break;
+			}
+		}
+		return alright;
+	}
+
+	private boolean isGoodTreeNodeForBreak(TreeNode tree) {
+		if (tree == null) {
+			return false;
+		}
+		return tree.getScope().getType().equals(ScopeType.FOR) ? true : this.isGoodTreeNodeForBreak(tree.getParent());
 	}
 
 }

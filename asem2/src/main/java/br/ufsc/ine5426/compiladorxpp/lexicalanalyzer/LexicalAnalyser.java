@@ -51,9 +51,9 @@ public class LexicalAnalyser {
 	 * Conjunto de palavras reservadas que foram retiradas da gramática fornecida
 	 * pelo professor.
 	 */
-	private Set<String> reservedWords = new HashSet<>(
-			Arrays.asList("class", "extends", Constants.INT, Constants.STRING, "constructor", "break", "print", "read",
-					"return", "super", Constants.IF, Constants.ELSE, Constants.IFELSE, Constants.FOR, "new", "null"));
+	private Set<String> reservedWords = new HashSet<>(Arrays.asList("class", "extends", Constants.INT, Constants.STRING,
+			"constructor", Constants.BREAK, "print", "read", "return", "super", Constants.IF, Constants.ELSE,
+			Constants.IFELSE, Constants.FOR, "new", "null"));
 	/**
 	 * Lista com os tokens encontrados durante o processo de compilação.
 	 */
@@ -72,6 +72,7 @@ public class LexicalAnalyser {
 	private int iterator;
 
 	private int scopeCounter;
+	@Getter
 	private TreeNode treeScope;
 
 	private List<String> lines;

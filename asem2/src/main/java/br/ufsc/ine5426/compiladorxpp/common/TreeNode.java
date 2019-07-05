@@ -25,4 +25,29 @@ public class TreeNode {
 		return child;
 	}
 
+	public TreeNode getRoot() {
+		return this.parent == null ? this : this.parent.getRoot();
+	}
+
+	public void printFromRoot() {
+		this.printTree(this.getRoot(), " ");
+	}
+
+	private void printTree(TreeNode node, String appender) {
+		System.out.println(appender + node.getScope());
+		node.getChildren().forEach(each -> this.printTree(each, appender + appender));
+	}
+
+	public TreeNode findByScope(Scope scope) {
+		if (this.scope.equals(scope)) {
+			return this;
+		}
+
+		for (TreeNode treeNode : this.children) {
+			return treeNode.findByScope(scope);
+		}
+
+		return null;
+	}
+
 }

@@ -13,4 +13,9 @@ public class Scope {
 	private int id;
 	private ScopeType type;
 
+	@Override
+	public String toString() {
+		return this.id + " " + this.type.toString();
+	}
+
 }

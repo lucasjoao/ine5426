@@ -15,6 +15,7 @@ public class Constants {
 	public static final String ELSE = "else";
 	public static final String IFELSE = "ifelse";
 	public static final String FOR = "for";
+	public static final String BREAK = "break";
 
 	/**
 	 * Valor retirado do autômato desenvolvido pela equipe. Representa o estado
