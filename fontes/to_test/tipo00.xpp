@@ -1,0 +1,4 @@
+int b;
+int c;
+int d;
+b + (123 * b) / 2 % 4;
