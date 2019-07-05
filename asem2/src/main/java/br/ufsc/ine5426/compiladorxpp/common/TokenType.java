@@ -8,7 +8,7 @@
  *
  */
 
-package br.ufsc.ine5426.compiladorxpp.lexicalanalyzer;
+package br.ufsc.ine5426.compiladorxpp.common;
 
 /**
  * Define os tipos de tokens que a linguagem X++ possui.

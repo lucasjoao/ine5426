@@ -29,6 +29,8 @@ import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
 import br.ufsc.ine5426.compiladorxpp.automata.State;
 import br.ufsc.ine5426.compiladorxpp.common.Constants;
 import br.ufsc.ine5426.compiladorxpp.common.IdentType;
+import br.ufsc.ine5426.compiladorxpp.common.Token;
+import br.ufsc.ine5426.compiladorxpp.common.TokenType;
 import lombok.Getter;
 
 /**

@@ -3,8 +3,8 @@ package br.ufsc.ine5426.compiladorxpp.semanticanalyzer;
 import java.util.List;
 
 import br.ufsc.ine5426.compiladorxpp.common.IdentType;
-import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.Token;
-import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.TokenType;
+import br.ufsc.ine5426.compiladorxpp.common.Token;
+import br.ufsc.ine5426.compiladorxpp.common.TokenType;
 import br.ufsc.ine5426.compiladorxpp.syntacticanalyzer.LL1;
 import lombok.Getter;
 import lombok.Setter;

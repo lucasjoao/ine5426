@@ -13,11 +13,11 @@ import java.util.Set;
 import java.util.Stack;
 
 import br.ufsc.ine5426.compiladorxpp.common.Symbol;
+import br.ufsc.ine5426.compiladorxpp.common.Token;
+import br.ufsc.ine5426.compiladorxpp.common.TokenType;
 import br.ufsc.ine5426.compiladorxpp.grammar.Body;
 import br.ufsc.ine5426.compiladorxpp.grammar.ContextFreeGrammar;
 import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.LexicalAnalyser;
-import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.Token;
-import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.TokenType;
 import lombok.Getter;
 
 public class LL1 {
