@@ -21,6 +21,7 @@ import org.apache.commons.cli.ParseException;
 
 import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
 import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.LexicalAnalyser;
+import br.ufsc.ine5426.compiladorxpp.semanticanalyzer.SemanticAnalyzer;
 import br.ufsc.ine5426.compiladorxpp.syntacticanalyzer.LL1;
 
 /**
@@ -44,9 +45,13 @@ public class Main {
 				var input = cmd.getOptionValue("i");
 				var lexicalAnalyser = new LexicalAnalyser(FiniteAutomata.Load("./baseAutomata.txt"));
 				var ll1 = new LL1("./baseGrammar.txt", lexicalAnalyser);
+				var semanticAnalyser = new SemanticAnalyzer(ll1);
 
-				if (ll1.compile(input)) {
+				// TODO: pensar melhor na questão das mensagens
+				if (semanticAnalyser.compile(input)) {
 					System.out.println("Compilação bem-sucedida!");
+					lexicalAnalyser.printSymbolTable();
+					lexicalAnalyser.printTokens();
 				} else {
 					System.out.println("Compilação mal-sucedida.");
 				}
