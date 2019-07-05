@@ -50,6 +50,7 @@ public class LexicalAnalyser {
 	/**
 	 * Lista com os tokens encontrados durante o processo de compilação.
 	 */
+	@Getter
 	private List<Token> tokens = new ArrayList<>();
 	/**
 	 * Lista com os erros encontrados durante o processo de compilação.
@@ -202,12 +203,17 @@ public class LexicalAnalyser {
 				if (this.tokens.isEmpty()) {
 					System.out.println("Algo de muito estranho aconteceu, debugar!");
 				} else {
-					String lastTokenName = this.tokens.get(this.tokens.size() - 1).getName();
-					if (Constants.STRING.equals(lastTokenName)) {
-						identType = IdentType.STRING;
-					} else if (Constants.INT.equals(lastTokenName)) {
-						identType = IdentType.INT;
+					if (this.table.containsKey(lexeme)) {
+						identType = this.table.get(lexeme).getIdentType();
+					} else {
+						String lastTokenName = this.tokens.get(this.tokens.size() - 1).getName();
+						if (Constants.STRING.equals(lastTokenName)) {
+							identType = IdentType.STRING;
+						} else if (Constants.INT.equals(lastTokenName)) {
+							identType = IdentType.INT;
+						}
 					}
+
 				}
 			}
 
@@ -238,8 +244,9 @@ public class LexicalAnalyser {
 	 */
 	public void printTokens() {
 		this.tokens.forEach(token -> {
-			String string = "%s %s - linha %s, coluna %s";
-			String format = String.format(string, token.getType(), token.getName(), token.getLine(), token.getColumn());
+			String string = "%s %s %s - linha %s, coluna %s";
+			String format = String.format(string, token.getType(), token.getIdentType(), token.getName(),
+					token.getLine(), token.getColumn());
 			System.out.println(format);
 		});
 

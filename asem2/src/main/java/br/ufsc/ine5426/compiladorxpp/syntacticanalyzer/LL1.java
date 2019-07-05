@@ -18,6 +18,7 @@ import br.ufsc.ine5426.compiladorxpp.grammar.ContextFreeGrammar;
 import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.LexicalAnalyser;
 import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.Token;
 import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.TokenType;
+import lombok.Getter;
 
 public class LL1 {
 
@@ -26,6 +27,7 @@ public class LL1 {
 	private ContextFreeGrammar grammar;
 	private Map<Symbol, Set<Symbol>> firsts;
 	private Map<Symbol, Set<Symbol>> follows;
+	@Getter
 	private LexicalAnalyser lexicalAnalyser;
 	private Stack<Symbol> stack;
 
