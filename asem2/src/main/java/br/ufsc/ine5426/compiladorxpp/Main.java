@@ -50,8 +50,6 @@ public class Main {
 				// TODO: pensar melhor na questão das mensagens
 				if (semanticAnalyser.compile(input)) {
 					System.out.println("Compilação bem-sucedida!");
-					lexicalAnalyser.printSymbolTable();
-					lexicalAnalyser.printTokens();
 				} else {
 					System.out.println("Compilação mal-sucedida.");
 				}
