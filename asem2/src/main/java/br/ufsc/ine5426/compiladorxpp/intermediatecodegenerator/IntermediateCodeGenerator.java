@@ -122,8 +122,31 @@ public class IntermediateCodeGenerator {
 	}
 
 	private void createToIf(int index) {
-		// TODO Auto-generated method stub
+		int insideIfIndex = index;
+		for (int i = index; i < this.tokens.size(); i++) {
+			this.seenIds.add(i);
+			Token token = this.tokens.get(i);
+			this.intermediateCode.append(token.getName() + " ");
+			if (TokenType.BLOCK_OPEN.equals(token.getType()) && "{".equals(token.getName())) {
+				insideIfIndex = i + 1;
+				break;
+			}
+		}
 
+		Label entryLabel = new Label(this.labelCounter++);
+		Label exitLabel = new Label(this.labelCounter++);
+
+		this.intermediateCode.append("GOTO " + exitLabel.getName());
+		this.intermediateCode.append(BREAK_LINE);
+		this.intermediateCode.append(entryLabel.getName() + ":");
+
+		for (int j = insideIfIndex; j < this.tokens.size(); j++) {
+			this.operate(insideIfIndex);
+		}
+
+		this.intermediateCode.append("GOTO " + exitLabel.getName());
+		this.intermediateCode.append(BREAK_LINE);
+		this.intermediateCode.append(exitLabel.getName() + ":");
 	}
 
 	private void createToFor(int index) {
