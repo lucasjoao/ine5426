@@ -1,4 +1,6 @@
-for () {
-	int a;
+{
+	for (.a = 5; 1; .b = 6) {
+		int c;
+	}
+	break;	
 }
-break;
