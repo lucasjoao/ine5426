@@ -34,6 +34,7 @@ public class SemanticAnalyzer {
 			this.treeScope = this.ll1.getLexicalAnalyser().getTreeScope();
 			return this.checkType() && this.checkVariableScope() && this.checkBreak();
 		} else {
+			System.out.println("Mensagem temporária");
 			// TODO: add mensagens
 			return false;
 		}
