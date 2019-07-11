@@ -92,18 +92,13 @@ public class SemanticAnalyzer {
 	private boolean isGoodVariableScope(Token search) {
 		Token lastSeen = search;
 		// posso pular porque sei que vou receber o primeiro ident não visto aqui
-		boolean skipLine = true;
+		boolean skipToken = true;
 		for (Token token : this.tokens) {
-			if (token.equals(search) || skipLine) {
-				skipLine = false;
+			if (skipToken) {
+				skipToken = !token.equals(search);
 				continue;
 			}
-			/*
-			 * read chris;
-			  int a;
-				print a;
-			 */
-			// XXX: int a; print a; gera bug, arrumar!
+
 			if (token.isDuplicate(search) && this.isLastSeenThatWillGenerateBadResult(lastSeen)) {
 				System.out.println("Erro no isGoodVariableScope"); // XXX: add result
 				return false;
