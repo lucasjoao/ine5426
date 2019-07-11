@@ -10,6 +10,8 @@
 
 package br.ufsc.ine5426.compiladorxpp.common;
 
+import java.util.Set;
+
 /**
  * Define os tipos de tokens que a linguagem X++ possui.
  *
@@ -19,6 +21,9 @@ public enum TokenType {
 	 * Palavra reservada.
 	 */
 	PR,
+	/**
+	 * Identificador.
+	 */
 	IDENT,
 	/**
 	 * Delimitador.
@@ -40,10 +45,20 @@ public enum TokenType {
 	 * Fechamento de bloco.
 	 */
 	BLOCK_CLOSE,
+	/**
+	 * Números inteiros.
+	 */
 	INT_CONSTANT,
+	/**
+	 * String entre aspas duplas.
+	 */
 	STRING_CONSTANT,
 	/**
 	 * Ponto (.).
 	 */
 	POINT;
+
+	public static Set<TokenType> getNotPrintableTypes() {
+		return Set.of(BLOCK_OPEN, BLOCK_CLOSE, DELIMITER);
+	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import br.ufsc.ine5426.compiladorxpp.common.Constants;
+import br.ufsc.ine5426.compiladorxpp.common.Scope;
 import br.ufsc.ine5426.compiladorxpp.common.Token;
 import br.ufsc.ine5426.compiladorxpp.common.TokenType;
 import br.ufsc.ine5426.compiladorxpp.semanticanalyzer.SemanticAnalyzer;
@@ -64,7 +65,9 @@ public class IntermediateCodeGenerator {
 			this.createToIdent(index);
 		} else {
 			// XXX: verificar se há problema com a linha
-			this.intermediateCode.append(token.getName());
+			if (!TokenType.getNotPrintableTypes().contains(token.getType())) {
+				this.intermediateCode.append(token.getName());
+			}
 		}
 	}
 
@@ -126,27 +129,34 @@ public class IntermediateCodeGenerator {
 		for (int i = index; i < this.tokens.size(); i++) {
 			this.seenIds.add(i);
 			Token token = this.tokens.get(i);
-			this.intermediateCode.append(token.getName() + " ");
 			if (TokenType.BLOCK_OPEN.equals(token.getType()) && "{".equals(token.getName())) {
 				insideIfIndex = i + 1;
 				break;
+			} else {
+				this.intermediateCode.append(token.getName() + " ");
 			}
 		}
 
 		Label entryLabel = new Label(this.labelCounter++);
 		Label exitLabel = new Label(this.labelCounter++);
 
-		this.intermediateCode.append("GOTO " + exitLabel.getName());
+		this.intermediateCode.append("== 0 GOTO " + exitLabel.getName());
 		this.intermediateCode.append(BREAK_LINE);
-		this.intermediateCode.append(entryLabel.getName() + ":");
+		this.intermediateCode.append(entryLabel.getNameWithColon());
+		this.intermediateCode.append(BREAK_LINE);
 
+		Scope currentScope = this.tokens.get(insideIfIndex).getScope();
 		for (int j = insideIfIndex; j < this.tokens.size(); j++) {
-			this.operate(insideIfIndex);
+			Token token = this.tokens.get(j);
+			if (token.getScope().equals(currentScope) && !this.seenIds.contains(j)) {
+				this.operate(j);
+			}
 		}
 
 		this.intermediateCode.append("GOTO " + exitLabel.getName());
 		this.intermediateCode.append(BREAK_LINE);
-		this.intermediateCode.append(exitLabel.getName() + ":");
+		this.intermediateCode.append(exitLabel.getNameWithColon());
+		this.intermediateCode.append(BREAK_LINE);
 	}
 
 	private void createToFor(int index) {

@@ -4,11 +4,15 @@ import lombok.Getter;
 
 @Getter
 public class Label {
-	
+
 	private String name;
-	
+
 	public Label(int id) {
-		this.name = "LABEL" + id + ":";
+		this.name = "LABEL" + id;
+	}
+
+	public String getNameWithColon() {
+		return this.name + ":";
 	}
 
 }
