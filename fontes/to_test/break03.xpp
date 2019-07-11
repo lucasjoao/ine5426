@@ -1,7 +1,11 @@
-for () {
-	int a;
-}
+{
 
-if () {
-	break;
+	for (.a = 5; 1; .b = 6) {
+		int a;
+	}
+
+	if (1) {
+		break;
+	}
+	
 }
