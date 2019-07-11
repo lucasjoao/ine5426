@@ -66,6 +66,7 @@ public class SemanticAnalyzer {
 		this.result.append(BREAK_LINE);
 		this.result.append("Há alguma violação na verificação de tipos em expressões aritméticas? ");
 		this.result.append(alright ? "Não!" : "Sim, ver erros nas linhas anteriores!");
+		this.result.append(BREAK_LINE);
 		return alright;
 	}
 
@@ -108,6 +109,7 @@ public class SemanticAnalyzer {
 		this.result.append(BREAK_LINE);
 		this.result.append("Existem duas ou mais declarações de um identificador em um mesmo escopo? ");
 		this.result.append(alright ? "Não!" : "Sim, ver erros nas linhas anteriores!");
+		this.result.append(BREAK_LINE);
 		return alright;
 	}
 
@@ -156,6 +158,7 @@ public class SemanticAnalyzer {
 		this.result.append(BREAK_LINE);
 		this.result.append("Existe um comando break fora do escopo de um comando de repetição? ");
 		this.result.append(alright ? "Não!" : "Sim, ver erros nas linhas anteriores!");
+		this.result.append(BREAK_LINE);
 		return alright;
 	}
 
