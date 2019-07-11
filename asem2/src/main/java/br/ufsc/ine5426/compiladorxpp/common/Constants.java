@@ -34,6 +34,8 @@ public class Constants {
 	public static final String PRINT = "print";
 	public static final String READ = "read";
 
+	public static final String BREAK_LINE = "\n";
+
 	/**
 	 * Valor retirado do autômato desenvolvido pela equipe. Representa o estado
 	 * especial de retração.

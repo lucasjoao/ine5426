@@ -10,6 +10,8 @@
 
 package br.ufsc.ine5426.compiladorxpp.intermediatecodegenerator;
 
+import static br.ufsc.ine5426.compiladorxpp.common.Constants.BREAK_LINE;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,7 +30,6 @@ import br.ufsc.ine5426.compiladorxpp.semanticanalyzer.SemanticAnalyzer;
 public class IntermediateCodeGenerator {
 
 	private static final String FINAL = "FINAL:";
-	private static final String BREAK_LINE = "\n";
 
 	private List<Token> tokens;
 	private StringBuilder intermediateCode;

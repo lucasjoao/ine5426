@@ -33,6 +33,7 @@ public class Main {
 	public static void main(String[] args) {
 		Options options = new Options();
 		options.addOption("i", "input", true, "caminho do arquivo de entrada");
+		options.addOption("p", "print-gci", false, "indica se deve imprimir ou não o código intermediário para o arquivo de entrada");
 		CommandLineParser parser = new DefaultParser();
 		try {
 			CommandLine cmd = parser.parse(options, args);
@@ -42,14 +43,26 @@ public class Main {
 				var ll1 = new LL1("./baseGrammar.txt", lexicalAnalyser);
 				var semanticAnalyser = new SemanticAnalyzer(ll1);
 
+				boolean isICG = cmd.hasOption("print-gci") || cmd.hasOption("p");
 				if (semanticAnalyser.compile(input)) {
 					System.out.println("Compilação bem-sucedida!");
-					var intermediateCodeGenerator = new IntermediateCodeGenerator(semanticAnalyser);
-					intermediateCodeGenerator.run();
-					intermediateCodeGenerator.print();
+
+					if (isICG) {
+						var intermediateCodeGenerator = new IntermediateCodeGenerator(semanticAnalyser);
+						intermediateCodeGenerator.run();
+
+						System.out.println("Código intermediário gerado:");
+						intermediateCodeGenerator.print();
+					}
+
 				} else {
 					System.out.println("Compilação mal-sucedida.");
 				}
+
+				if (!isICG) {
+					semanticAnalyser.printResult();
+				}
+
 			} else {
 				HelpFormatter formatter = new HelpFormatter();
 				formatter.printHelp("java -jar {PATH_TO_JAR}compiladorxpp-1.0.jar", options);

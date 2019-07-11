@@ -188,14 +188,17 @@ public class LL1 {
 				Token token = this.lexicalAnalyser.getNextToken();
 				this.operate(token);
 				if (this.errors.size() > 0) {
+					System.out.println("Erro durante a operação da análise sintática.");
 					return false;
 				}
 			}
 		} else {
+			System.out.println("Erro na análise léxica.");
 			this.errors.addAll(this.lexicalAnalyser.getErrors());
 			return false;
 		}
 		if (!this.stack.isEmpty()) {
+			System.out.println("Erro porque a pilha da análise sintática não terminou vazia.");
 			this.errors.add("A pilha não terminou vazia! Esqueceu de alguma coisa? ->" + this.stack.toString());
 		}
 		return this.errors.size() == 0;
