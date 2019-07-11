@@ -8,6 +8,7 @@ import br.ufsc.ine5426.compiladorxpp.common.Constants;
 import br.ufsc.ine5426.compiladorxpp.common.Scope;
 import br.ufsc.ine5426.compiladorxpp.common.Token;
 import br.ufsc.ine5426.compiladorxpp.common.TokenType;
+import br.ufsc.ine5426.compiladorxpp.common.TreeNode;
 import br.ufsc.ine5426.compiladorxpp.semanticanalyzer.SemanticAnalyzer;
 
 public class IntermediateCodeGenerator {
@@ -19,24 +20,32 @@ public class IntermediateCodeGenerator {
 
 	private int labelCounter;
 	private int memCounter;
+	private int lastLineOperate;
+	private TreeNode treeScope;
 	// XXX: salvar ultima label de saída para break???
 
 	public IntermediateCodeGenerator(SemanticAnalyzer semanticAnalyzer) {
 		this.tokens = semanticAnalyzer.getTokens();
+		this.treeScope = semanticAnalyzer.getLl1().getLexicalAnalyser().getTreeScope();
 		this.intermediateCode = new StringBuilder();
 		this.seenIds = new HashSet<Integer>();
 		this.labelCounter = 0;
 		this.memCounter = 0;
+		this.lastLineOperate = 1;
 	}
 
 	public void run() {
 		for (int i = 0; i < this.tokens.size(); i++) {
 			if (!this.seenIds.contains(i)) {
-				this.seenIds.clear();
+				// TODO: retestar coisas para ver necessidade disso, removido para fazer ifelse
+				// quando só faltava o for e o break
+//				this.seenIds.clear();
 				this.operate(i);
 			}
+			this.lastLineOperate = this.tokens.get(i).getLine();
 		}
 
+		this.intermediateCode.append(BREAK_LINE);
 		this.intermediateCode.append("FINAL:");
 		this.intermediateCode.append(BREAK_LINE);
 		this.intermediateCode.append("exit");
@@ -64,9 +73,11 @@ public class IntermediateCodeGenerator {
 		} else if (TokenType.IDENT.equals(token.getType())) {
 			this.createToIdent(index);
 		} else {
-			// XXX: verificar se há problema com a linha
 			if (!TokenType.getNotPrintableTypes().contains(token.getType())) {
-				this.intermediateCode.append(token.getName());
+				if (this.lastLineOperate != token.getLine()) {
+					this.intermediateCode.append(BREAK_LINE);
+				}
+				this.intermediateCode.append(token.getName() + " ");
 			}
 		}
 	}
@@ -120,7 +131,54 @@ public class IntermediateCodeGenerator {
 	}
 
 	private void createToIfElse(int index) {
-		// TODO Auto-generated method stub
+		int insideIfElseIndex = index;
+		for (int i = index; i < this.tokens.size(); i++) {
+			this.seenIds.add(i);
+			Token token = this.tokens.get(i);
+			if (TokenType.BLOCK_OPEN.equals(token.getType()) && "{".equals(token.getName())) {
+				insideIfElseIndex = i + 1;
+				break;
+			} else {
+				this.intermediateCode.append(token.getName() + " ");
+			}
+		}
+
+		Label entryLabel = new Label(this.labelCounter++);
+		Label elseLabel = new Label(this.labelCounter++);
+		Label exitLabel = new Label(this.labelCounter++);
+
+		this.intermediateCode.append("== 0 GOTO " + elseLabel.getName());
+		this.intermediateCode.append(BREAK_LINE);
+		this.intermediateCode.append(entryLabel.getNameWithColon());
+		this.intermediateCode.append(BREAK_LINE);
+
+		Scope currentScope = this.tokens.get(insideIfElseIndex).getScope();
+		for (int j = insideIfElseIndex; j < this.tokens.size(); j++) {
+			Token token = this.tokens.get(j);
+			if (token.getScope().equals(currentScope) && !this.seenIds.contains(j)) {
+				this.operate(j);
+			}
+		}
+
+		this.intermediateCode.append("GOTO " + exitLabel.getName());
+		this.intermediateCode.append(BREAK_LINE);
+
+		this.intermediateCode.append(elseLabel.getNameWithColon());
+		this.intermediateCode.append(BREAK_LINE);
+
+		Scope parentOfCurrentScope = this.treeScope.findByScope(currentScope).getParent().getScope();
+		for (int k = insideIfElseIndex; k < this.tokens.size(); k++) {
+			Token token = this.tokens.get(k);
+			if (!token.getScope().equals(parentOfCurrentScope) && !this.seenIds.contains(k)) {
+				this.operate(k);
+			}
+		}
+
+		this.intermediateCode.append("GOTO " + exitLabel.getName());
+		this.intermediateCode.append(BREAK_LINE);
+
+		this.intermediateCode.append(exitLabel.getNameWithColon());
+		this.intermediateCode.append(BREAK_LINE);
 
 	}
 
