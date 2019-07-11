@@ -1,3 +1,13 @@
+/*
+ *  Trabalho realizado para a disciplina INE5426 (Construção de Compiladores) do
+ *  curso de Ciência da Computação da Universidade Federal de Santa Catarina.
+ *  Disciplina ministrada pelo prof. Alvaro Franco.
+ *
+ *  Desenvolvido por:
+ *  Christian de Pieri, Jacyara Bosse, Lucas João Martins e Nathália Liz de Brito.
+ *
+ */
+
 package br.ufsc.ine5426.compiladorxpp.semanticanalyzer;
 
 import java.util.List;
@@ -11,10 +21,11 @@ import br.ufsc.ine5426.compiladorxpp.common.TokenType;
 import br.ufsc.ine5426.compiladorxpp.common.TreeNode;
 import br.ufsc.ine5426.compiladorxpp.syntacticanalyzer.LL1;
 import lombok.Getter;
-import lombok.Setter;
 
-// XXX: necessario?
-@Setter
+/**
+ * Classe que representa o analisador semântico do projeto.
+ *
+ */
 @Getter
 public class SemanticAnalyzer {
 

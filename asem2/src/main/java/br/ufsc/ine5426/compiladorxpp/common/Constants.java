@@ -1,8 +1,22 @@
+/*
+ *  Trabalho realizado para a disciplina INE5426 (Construção de Compiladores) do
+ *  curso de Ciência da Computação da Universidade Federal de Santa Catarina.
+ *  Disciplina ministrada pelo prof. Alvaro Franco.
+ *
+ *  Desenvolvido por:
+ *  Christian de Pieri, Jacyara Bosse, Lucas João Martins e Nathália Liz de Brito.
+ *
+ */
+
 package br.ufsc.ine5426.compiladorxpp.common;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+/**
+ * Classe para armazenar as constantes que aparecem em mais de um lugar no projeto.
+ *
+ */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Constants {
 

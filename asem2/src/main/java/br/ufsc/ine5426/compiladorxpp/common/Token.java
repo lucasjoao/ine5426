@@ -47,6 +47,12 @@ public class Token {
 
 	private Scope scope;
 
+	/**
+	 * isDuplicate não quer dizer que eles são iguais, já que podem estar em linha ou colunas diferentes.
+	 *
+	 * @param other token que será verificado
+	 * @return se this é uma versão duplicada de other
+	 */
 	public boolean isDuplicate(Token other) {
 		return this.type.equals(other.getType()) && this.name.equals(other.getName())
 				&& this.identType.equals(other.getIdentType()) && this.scope.equals(other.getScope());

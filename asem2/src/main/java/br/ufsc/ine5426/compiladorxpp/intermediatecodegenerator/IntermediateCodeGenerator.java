@@ -1,3 +1,13 @@
+/*
+ *  Trabalho realizado para a disciplina INE5426 (Construção de Compiladores) do
+ *  curso de Ciência da Computação da Universidade Federal de Santa Catarina.
+ *  Disciplina ministrada pelo prof. Alvaro Franco.
+ *
+ *  Desenvolvido por:
+ *  Christian de Pieri, Jacyara Bosse, Lucas João Martins e Nathália Liz de Brito.
+ *
+ */
+
 package br.ufsc.ine5426.compiladorxpp.intermediatecodegenerator;
 
 import java.util.HashSet;
@@ -11,14 +21,18 @@ import br.ufsc.ine5426.compiladorxpp.common.TokenType;
 import br.ufsc.ine5426.compiladorxpp.common.TreeNode;
 import br.ufsc.ine5426.compiladorxpp.semanticanalyzer.SemanticAnalyzer;
 
+/**
+ *  Classe que representa o gerador de código intermediário.
+ *
+ */
 public class IntermediateCodeGenerator {
 
 	private static final String FINAL = "FINAL:";
+	private static final String BREAK_LINE = "\n";
+
 	private List<Token> tokens;
 	private StringBuilder intermediateCode;
-	private static final String BREAK_LINE = "\n";
 	private Set<Integer> seenIds;
-
 	private int labelCounter;
 	private int memCounter;
 	private int lastLineOperate;
@@ -41,7 +55,7 @@ public class IntermediateCodeGenerator {
 			if (!this.seenIds.contains(i)) {
 				// TODO: retestar coisas para ver necessidade disso, removido para fazer ifelse
 				// quando só faltava o for e o break
-//				this.seenIds.clear();
+				//				this.seenIds.clear();
 				this.operate(i);
 			}
 			this.lastLineOperate = this.tokens.get(i).getLine();

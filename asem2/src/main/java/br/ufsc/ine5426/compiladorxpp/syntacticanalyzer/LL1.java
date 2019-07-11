@@ -1,3 +1,13 @@
+/*
+ *  Trabalho realizado para a disciplina INE5426 (Construção de Compiladores) do
+ *  curso de Ciência da Computação da Universidade Federal de Santa Catarina.
+ *  Disciplina ministrada pelo prof. Alvaro Franco.
+ *
+ *  Desenvolvido por:
+ *  Christian de Pieri, Jacyara Bosse, Lucas João Martins e Nathália Liz de Brito.
+ *
+ */
+
 package br.ufsc.ine5426.compiladorxpp.syntacticanalyzer;
 
 import static br.ufsc.ine5426.compiladorxpp.common.Constants.CFG_EMPTY_STACK;
@@ -20,6 +30,10 @@ import br.ufsc.ine5426.compiladorxpp.grammar.ContextFreeGrammar;
 import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.LexicalAnalyser;
 import lombok.Getter;
 
+/**
+ *  Classe que representa o analisador sintático do projeto.
+ *
+ */
 public class LL1 {
 
 	private List<String> errors = new ArrayList<>();

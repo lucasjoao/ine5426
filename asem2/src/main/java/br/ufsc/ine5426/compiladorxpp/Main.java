@@ -30,12 +30,6 @@ import br.ufsc.ine5426.compiladorxpp.syntacticanalyzer.LL1;
  */
 public class Main {
 
-	/**
-	 * Pega o caminho para o arquivo que é o programa fonte através de uma opção -i
-	 * ao executar o .jar. Com isso, cria um AF a partir de um .txt criado pela
-	 * equipe e feito com base na gramática fornecida pelo professor. Além disso,
-	 * cria um AL que irá compilar o programa fonte.
-	 */
 	public static void main(String[] args) {
 		Options options = new Options();
 		options.addOption("i", "input", true, "caminho do arquivo de entrada");
@@ -48,7 +42,6 @@ public class Main {
 				var ll1 = new LL1("./baseGrammar.txt", lexicalAnalyser);
 				var semanticAnalyser = new SemanticAnalyzer(ll1);
 
-				// TODO: pensar melhor na questão das mensagens
 				if (semanticAnalyser.compile(input)) {
 					System.out.println("Compilação bem-sucedida!");
 					var intermediateCodeGenerator = new IntermediateCodeGenerator(semanticAnalyser);

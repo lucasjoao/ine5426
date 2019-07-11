@@ -58,6 +58,11 @@ public enum TokenType {
 	 */
 	POINT;
 
+	/**
+	 * Tipos de Tokens que não são impressos de maneira implícitas no GCI.
+	 *
+	 *  @return conjunto com os tipos especificados
+	 */
 	public static Set<TokenType> getNotPrintableTypes() {
 		return Set.of(BLOCK_OPEN, BLOCK_CLOSE, DELIMITER);
 	}
