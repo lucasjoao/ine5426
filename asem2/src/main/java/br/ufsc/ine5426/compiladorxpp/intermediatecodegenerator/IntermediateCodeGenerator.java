@@ -54,9 +54,6 @@ public class IntermediateCodeGenerator {
 	public void run() {
 		for (int i = 0; i < this.tokens.size(); i++) {
 			if (!this.seenIds.contains(i)) {
-				// TODO: retestar coisas para ver necessidade disso, removido para fazer ifelse
-				// quando só faltava o for e o break
-				//				this.seenIds.clear();
 				this.operate(i);
 			}
 			this.lastLineOperate = this.tokens.get(i).getLine();
