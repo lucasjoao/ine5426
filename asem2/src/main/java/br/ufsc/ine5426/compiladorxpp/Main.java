@@ -45,6 +45,7 @@ public class Main {
 
 				boolean isICG = cmd.hasOption("print-gci") || cmd.hasOption("p");
 				if (semanticAnalyser.compile(input)) {
+					System.out.println();
 					System.out.println("Compilação bem-sucedida!");
 
 					if (isICG) {
@@ -58,6 +59,7 @@ public class Main {
 					}
 
 				} else {
+					System.out.println();
 					System.out.println("Compilação mal-sucedida.");
 				}
 
