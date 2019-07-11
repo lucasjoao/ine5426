@@ -51,7 +51,9 @@ public class Main {
 						var intermediateCodeGenerator = new IntermediateCodeGenerator(semanticAnalyser);
 						intermediateCodeGenerator.run();
 
+						System.out.println();
 						System.out.println("Código intermediário gerado:");
+						System.out.println();
 						intermediateCodeGenerator.print();
 					}
 
