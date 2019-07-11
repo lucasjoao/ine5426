@@ -1,0 +1,9 @@
+{
+	int a;
+	for (i = 5; 2; i = 31) {
+		{
+			string b;
+			break;
+		}
+	}
+}

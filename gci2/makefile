@@ -9,10 +9,16 @@ run:
 
 test:
 	@cd ../asem2/
-	@echo "TODO"
+	@echo "EXEMPLOS DE GERAÇÃO DE CÓDIGO INTERMEDIÁRIO"
 	@echo "-----------------------"
-	@cat ../fontes/to_test/tipo00.xpp
-	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/tipo00.xpp -p
+	@cat ../fontes/to_test/gci00.xpp
+	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/gci00.xpp -p
+	@echo "-----------------------"
+	@cat ../fontes/to_test/gci01.xpp
+	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/gci01.xpp -p
+	@echo "-----------------------"
+	@cat ../fontes/to_test/gci02.xpp
+	java -jar target/compiladorxpp-1.0.jar -i ../fontes/to_test/gci02.xpp -p
 	@cd ../gci2/
 
 build:
