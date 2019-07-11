@@ -52,7 +52,7 @@ public class LexicalAnalyser {
 	 * pelo professor.
 	 */
 	private Set<String> reservedWords = new HashSet<>(Arrays.asList("class", "extends", Constants.INT, Constants.STRING,
-			"constructor", Constants.BREAK, "print", "read", "return", "super", Constants.IF, Constants.ELSE,
+			"constructor", Constants.BREAK, Constants.PRINT, Constants.READ, Constants.RETURN, "super", Constants.IF, Constants.ELSE,
 			Constants.IFELSE, Constants.FOR, "new", "null"));
 	/**
 	 * Lista com os tokens encontrados durante o processo de compilação.

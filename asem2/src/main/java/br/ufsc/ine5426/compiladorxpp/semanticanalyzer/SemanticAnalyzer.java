@@ -98,6 +98,12 @@ public class SemanticAnalyzer {
 				skipLine = false;
 				continue;
 			}
+			/*
+			 * read chris;
+			  int a;
+				print a;
+			 */
+			// XXX: int a; print a; gera bug, arrumar!
 			if (token.isDuplicate(search) && this.isLastSeenThatWillGenerateBadResult(lastSeen)) {
 				System.out.println("Erro no isGoodVariableScope"); // XXX: add result
 				return false;

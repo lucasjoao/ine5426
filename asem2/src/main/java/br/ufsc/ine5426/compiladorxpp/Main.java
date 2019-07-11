@@ -20,6 +20,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 import br.ufsc.ine5426.compiladorxpp.automata.FiniteAutomata;
+import br.ufsc.ine5426.compiladorxpp.intermediatecodegenerator.IntermediateCodeGenerator;
 import br.ufsc.ine5426.compiladorxpp.lexicalanalyzer.LexicalAnalyser;
 import br.ufsc.ine5426.compiladorxpp.semanticanalyzer.SemanticAnalyzer;
 import br.ufsc.ine5426.compiladorxpp.syntacticanalyzer.LL1;
@@ -50,6 +51,9 @@ public class Main {
 				// TODO: pensar melhor na questão das mensagens
 				if (semanticAnalyser.compile(input)) {
 					System.out.println("Compilação bem-sucedida!");
+					var intermediateCodeGenerator = new IntermediateCodeGenerator(semanticAnalyser);
+					intermediateCodeGenerator.run();
+					intermediateCodeGenerator.print();
 				} else {
 					System.out.println("Compilação mal-sucedida.");
 				}

@@ -16,6 +16,9 @@ public class Constants {
 	public static final String IFELSE = "ifelse";
 	public static final String FOR = "for";
 	public static final String BREAK = "break";
+	public static final String RETURN = "return";
+	public static final String PRINT = "print";
+	public static final String READ = "read";
 
 	/**
 	 * Valor retirado do autômato desenvolvido pela equipe. Representa o estado
