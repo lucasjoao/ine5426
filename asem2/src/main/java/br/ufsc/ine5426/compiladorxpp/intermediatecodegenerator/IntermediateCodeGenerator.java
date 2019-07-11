@@ -13,6 +13,7 @@ import br.ufsc.ine5426.compiladorxpp.semanticanalyzer.SemanticAnalyzer;
 
 public class IntermediateCodeGenerator {
 
+	private static final String FINAL = "FINAL:";
 	private List<Token> tokens;
 	private StringBuilder intermediateCode;
 	private static final String BREAK_LINE = "\n";
@@ -22,7 +23,7 @@ public class IntermediateCodeGenerator {
 	private int memCounter;
 	private int lastLineOperate;
 	private TreeNode treeScope;
-	// XXX: salvar ultima label de saída para break???
+	private String currentExitOfFor;
 
 	public IntermediateCodeGenerator(SemanticAnalyzer semanticAnalyzer) {
 		this.tokens = semanticAnalyzer.getTokens();
@@ -32,6 +33,7 @@ public class IntermediateCodeGenerator {
 		this.labelCounter = 0;
 		this.memCounter = 0;
 		this.lastLineOperate = 1;
+		this.currentExitOfFor = FINAL;
 	}
 
 	public void run() {
@@ -46,7 +48,7 @@ public class IntermediateCodeGenerator {
 		}
 
 		this.intermediateCode.append(BREAK_LINE);
-		this.intermediateCode.append("FINAL:");
+		this.intermediateCode.append(FINAL);
 		this.intermediateCode.append(BREAK_LINE);
 		this.intermediateCode.append("exit");
 	}
@@ -56,7 +58,7 @@ public class IntermediateCodeGenerator {
 		Token token = this.tokens.get(index);
 		if (TokenType.PR.equals(token.getType())) {
 			if (Constants.BREAK.equals(token.getName())) {
-				this.createToBreak(index);
+				this.createToBreak();
 			} else if (Constants.FOR.equals(token.getName())) {
 				this.createToFor(index);
 			} else if (Constants.IF.equals(token.getName())) {
@@ -218,13 +220,76 @@ public class IntermediateCodeGenerator {
 	}
 
 	private void createToFor(int index) {
-		// TODO Auto-generated method stub
+		int insideForIndex = index;
+		for (int i = index; i < this.tokens.size(); i++) {
+			this.seenIds.add(i);
+			Token token = this.tokens.get(i);
+			if (TokenType.BLOCK_OPEN.equals(token.getType()) && "{".equals(token.getName())) {
+				insideForIndex = i + 1;
+				break;
+			}
+		}
 
+		StringBuilder initialization = new StringBuilder();
+		StringBuilder condition = new StringBuilder();
+		StringBuilder inOrDecrement = new StringBuilder();
+		int semiColonNumber = 0;
+		List<Token> firstLine = this.tokens.subList(index + 2, insideForIndex - 2);
+		for (Token token : firstLine) {
+			if (token.getName().equals(";")) {
+				semiColonNumber++;
+				continue;
+			}
+
+			String toAppend = token.getName() + " ";
+			switch (semiColonNumber) {
+			case 0:
+				initialization.append(toAppend);
+				break;
+			case 1:
+				condition.append(toAppend);
+				break;
+			case 2:
+				inOrDecrement.append(toAppend);
+				break;
+			default:
+				break;
+			}
+		}
+
+		Label ifLabel = new Label(this.labelCounter++);
+		Label entryLabel = new Label(this.labelCounter++);
+		Label exitLabel = new Label(this.labelCounter++);
+		this.currentExitOfFor = exitLabel.getName();
+
+		this.intermediateCode.append(initialization.toString());
+		this.intermediateCode.append(BREAK_LINE);
+		this.intermediateCode.append(ifLabel.getNameWithColon());
+		this.intermediateCode.append(BREAK_LINE);
+		this.intermediateCode.append("if ( " + condition.toString() + ") == 0 GOTO " + exitLabel.getName());
+		this.intermediateCode.append(BREAK_LINE);
+		this.intermediateCode.append(entryLabel.getNameWithColon());
+		this.intermediateCode.append(BREAK_LINE);
+
+		Scope currentScope = this.tokens.get(insideForIndex).getScope();
+		for (int j = insideForIndex; j < this.tokens.size(); j++) {
+			Token token = this.tokens.get(j);
+			if (token.getScope().equals(currentScope) && !this.seenIds.contains(j)) {
+				this.operate(j);
+			}
+		}
+
+		this.intermediateCode.append(inOrDecrement.toString());
+		this.intermediateCode.append(BREAK_LINE);
+		this.intermediateCode.append("GOTO " + ifLabel.getName());
+		this.intermediateCode.append(BREAK_LINE);
+		this.intermediateCode.append(exitLabel.getNameWithColon());
+		this.intermediateCode.append(BREAK_LINE);
 	}
 
-	private void createToBreak(int index) {
-		// TODO Auto-generated method stub
-
+	private void createToBreak() {
+		this.intermediateCode.append("GOTO " + this.currentExitOfFor);
+		this.intermediateCode.append(BREAK_LINE);
 	}
 
 	private boolean isSemiColon(Token token) {
