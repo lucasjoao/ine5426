@@ -3,7 +3,7 @@
 		int a;
 	}
 
-	for (a = 5; 1; b = 6) {
+	for (c = 5; 1; b = 6) {
 		int a;
 	}
 }

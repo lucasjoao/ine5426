@@ -1,8 +1,9 @@
 {
+	int a;
 	for (a = 5; 1; b = 6) {
-		int a;
+		int c;
 	}
 
-	string a;
+	string d;
 
 }
