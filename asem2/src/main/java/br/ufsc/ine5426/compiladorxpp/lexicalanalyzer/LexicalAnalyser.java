@@ -237,15 +237,43 @@ public class LexicalAnalyser {
 				if (this.tokens.isEmpty()) {
 					System.out.println("Algo de muito estranho aconteceu, debugar!");
 				} else {
-					SymbolTableKey key = new SymbolTableKey(this.treeScope.getScope(), lexeme);
-					if (this.table.containsKey(key)) {
-						identType = this.table.get(key).getIdentType();
+
+					ArrayList<SymbolTableKey> possibleKeys = new ArrayList<>();
+					TreeNode keyNodeScope = this.treeScope;
+					while (keyNodeScope != null) {
+						possibleKeys.add(new SymbolTableKey(keyNodeScope.getScope(), lexeme));
+						keyNodeScope= keyNodeScope.getParent();
+					}
+
+					var wasDeclaredBefore = false;
+					SymbolTableKey foundKey = null;
+					for (SymbolTableKey key : possibleKeys) {
+						wasDeclaredBefore = this.table.containsKey(key);
+						if (wasDeclaredBefore) {
+							foundKey = key;
+							break;
+						}
+					}
+
+					if (wasDeclaredBefore) {
+						identType = this.table.get(foundKey).getIdentType();
 					} else {
 						String lastTokenName = this.tokens.get(this.tokens.size() - 1).getName();
 						if (Constants.STRING.equals(lastTokenName)) {
 							identType = IdentType.STRING;
 						} else if (Constants.INT.equals(lastTokenName)) {
 							identType = IdentType.INT;
+						} else {
+							// volto pela lista de tokens até encontrar outro ident que teve seu tipo definido corretamente
+							for (int j = this.tokens.size() - 2; j >= 0; j--) {
+								Token token = this.tokens.get(j);
+								if (Set.of("[", "]", ",").contains(token.getName())) {
+									continue;
+								} else {
+									identType = token.getIdentType();
+									break;
+								}
+							}
 						}
 					}
 
