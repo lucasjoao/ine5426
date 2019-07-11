@@ -1,13 +1,11 @@
 # INE5426
 
-Segundo trabalho desenvolvido em Java 10 e ANTLR por Christian de Pieri, Jacyara Bosse, Lucas João Martins e Nathália Liz de Brito para a disciplina INE5426 da UFSC.
+Terceiro trabalho desenvolvido em Java 10 por Christian de Pieri, Jacyara Bosse, Lucas João Martins e Nathália Liz de Brito para a disciplina INE5426 da UFSC.
 
 ### Organização ###
 
-Pasta as2 possui duas tentativas de desenvolvimento da tarefa as2, uma usando somente java e outra com o ANTLR.
+Pasta asem2 possui o desenvolvimento de todo o projeto junto do makefile para a tarefa asem2.
 
-Pasta asem1 possui o desenvolvimento da tarefa asem1.
+Pasta gci2 possui somente o makefile para a tarefa gci2, que por sua vez executa o código do projeto (presente na pasta asem2) com outros argumentos.
 
-Pasta build possui a dependência necessária para execução do ANTLR.
-
-Pasta fontes possui programas na linguagem xpp.
+Pasta fontes possui os programas solicitados e programas testes feitos na linguagem xpp.
