@@ -1,0 +1,17 @@
+{
+    int x, a, b, c;
+    a = 5;
+    b = 3;
+    c = 2 * a % b;
+
+    if(c) {
+        for(a = 7; 5+5; c = 10) {
+            ifelse(a+b) {
+                break;
+            } else {
+                c = a * b;
+            }
+        }
+    }
+
+}

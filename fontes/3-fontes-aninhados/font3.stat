@@ -1,0 +1,30 @@
+{
+    print "Iniciado programa";
+    print "Digite sua idade";
+
+    int i;
+    for(i = 0; 1; i = 2) {
+        if(i) {
+            break;
+        }
+    }
+
+    int idade;
+    read idade;
+
+    int x; 
+    x = idade - 18;
+    
+    ifelse(x) {
+        print "Voce ja eh maior de idade";
+    } else {
+        print "Voce ainda eh menor de idade";
+    }
+
+    string nome;
+    read nome;
+
+    print nome;
+
+   
+}
